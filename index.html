@@ -6,11 +6,15 @@
   <title>Yve Collective | Curated Escapes & Effortless Travel</title>
   <meta name="description" content="Yve Collective designs intimate, beautifully curated getaways and retreats across Kenya and beyond — experiences that inspire connection, rest, and renewal.">
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Preload Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" media="all" onload="this.media='all'">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Preload Tailwind CSS (if self-hosted, otherwise defer CDN) -->
+  <link rel="preload" as="script" href="https://cdn.tailwindcss.com">
+  <script src="https://cdn.tailwindcss.com" defer></script>
 
   <style>
     body {
@@ -96,11 +100,14 @@
     <a href="contact.html" class="hover:text-white" onclick="toggleMenu()">Contact</a>
   </div>
 
-  <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    function toggleMenu() { mobileMenu.classList.toggle('hidden'); }
-    menuBtn.addEventListener('click', toggleMenu);
+  <!-- Defer mobile menu script -->
+  <script defer>
+    window.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      function toggleMenu() { mobileMenu.classList.toggle('hidden'); }
+      menuBtn.addEventListener('click', toggleMenu);
+    });
   </script>
 
   <!-- WhatsApp Floating Button -->
@@ -115,23 +122,25 @@
     👋 Hello & welcome to <strong>Yve Collective</strong><br> Tap here to chat with us.
   </div>
 
-  <script>
-    // Show WhatsApp popup after 2s
-    setTimeout(() => {
-      const popup = document.getElementById('whatsappPopup');
-      popup.classList.remove('hidden');
-      setTimeout(() => { popup.classList.add('hidden'); }, 5000);
-    }, 2000);
+  <!-- Defer WhatsApp popup script -->
+  <script defer>
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        const popup = document.getElementById('whatsappPopup');
+        popup.classList.remove('hidden');
+        setTimeout(() => { popup.classList.add('hidden'); }, 5000);
+      }, 2000);
+    });
   </script>
 
   <!-- Hero Section with Slideshow -->
   <section class="relative h-screen flex items-center justify-center text-center text-white">
     <div class="slideshow">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="active" alt="Slide 1">
-      <img src="https://assets.micontenthub.com/traveloffers/travel-tips/rabat_3Z4Gi9csM.jpg" alt="Slide 2">
-      <img src="https://nataniatravel.com/wp-content/uploads/2023/09/Dubai-Desert-Safari-ft-1030x562.jpg" alt="Slide 3">
-      <img src="https://i.ibb.co/vx9Bpk4g/IMG-4296.jpg" alt="Slide 4">
-      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Slide 5">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="active" alt="Slide 1" width="1920" height="1080" loading="eager">
+      <img src="https://assets.micontenthub.com/traveloffers/travel-tips/rabat_3Z4Gi9csM.jpg" alt="Slide 2" width="1920" height="1080" loading="lazy">
+      <img src="https://nataniatravel.com/wp-content/uploads/2023/09/Dubai-Desert-Safari-ft-1030x562.jpg" alt="Slide 3" width="1030" height="562" loading="lazy">
+      <img src="https://i.ibb.co/vx9Bpk4g/IMG-4296.jpg" alt="Slide 4" width="1080" height="720" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Slide 5" width="1920" height="1080" loading="lazy">
     </div>
     <div class="absolute inset-0 bg-white/25"></div>
     <div class="relative z-10 px-6 max-w-3xl">
@@ -151,16 +160,18 @@
     </div>
   </section>
 
-  <script>
-    // Simple image slideshow
-    const slides = document.querySelectorAll('.slideshow img');
-    let current = 0;
-    function showNextSlide() {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }
-    setInterval(showNextSlide, 4000);
+  <!-- Defer slideshow script -->
+  <script defer>
+    window.addEventListener('DOMContentLoaded', function() {
+      const slides = document.querySelectorAll('.slideshow img');
+      let current = 0;
+      function showNextSlide() {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }
+      setInterval(showNextSlide, 4000);
+    });
   </script>
 
   <!-- Signature Experiences -->
@@ -171,22 +182,22 @@
     </p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       <div class="bg-white shadow-lg rounded-2xl overflow-hidden">
-        <img src="https://soroi.com/wp-content/uploads/2025/02/Leopards-Lair.jpg">
+        <img src="https://soroi.com/wp-content/uploads/2025/02/Leopards-Lair.jpg" width="400" height="250" loading="lazy" alt="Safari Escapes - Leopard's Lair">
         <h4 class="text-xl font-serif mt-4 mb-2 text-[#6F655C]">Safari Escapes</h4>
         <p class="text-[#6F655C]/80 px-4 pb-4">A return to the wild, where comfort meets adventure under endless skies.</p>
       </div>
       <div class="bg-white shadow-lg rounded-2xl overflow-hidden">
-        <img src="https://azuravilla.com/wp-content/uploads/2023/10/887A3435-jpg.webp" class="w-full h-56 object-cover">
+        <img src="https://azuravilla.com/wp-content/uploads/2023/10/887A3435-jpg.webp" width="400" height="224" loading="lazy" class="w-full h-56 object-cover" alt="Coastal Retreats - Azura Villa">
         <h4 class="text-xl font-serif mt-4 mb-2 text-[#6F655C]">Coastal Retreats</h4>
         <p class="text-[#6F655C]/80 px-4 pb-4">Serenity by the sea; sun-drenched days, soft breezes, and unhurried living.</p>
       </div>
       <div class="bg-white shadow-lg rounded-2xl overflow-hidden">
-        <img src="https://forrestnaromoru.com/wp-content/uploads/2018/07/DSC00464-scaled.jpg" class="w-full h-56 object-cover">
+        <img src="https://forrestnaromoru.com/wp-content/uploads/2018/07/DSC00464-scaled.jpg" width="400" height="224" loading="lazy" class="w-full h-56 object-cover" alt="Mountain & Cabin Getaways">
         <h4 class="text-xl font-serif mt-4 mb-2 text-[#6F655C]">Mountain & Cabin Getaways</h4>
         <p class="text-[#6F655C]/80 px-4 pb-4">Immersed in nature, surrounded by stillness and fresh open air.</p>
       </div>
       <div class="bg-white shadow-lg rounded-2xl overflow-hidden">
-        <img src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/60k/60444/p_2248707/1000_1760309551.jpg" class="w-full h-56 object-cover">
+        <img src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/60k/60444/p_2248707/1000_1760309551.jpg" width="400" height="224" loading="lazy" class="w-full h-56 object-cover" alt="Curated Group Retreats">
         <h4 class="text-xl font-serif mt-4 mb-2 text-[#6F655C]">Curated Group Retreats</h4>
         <p class="text-[#6F655C]/80 px-4 pb-4">Thoughtfully designed gatherings that bring people together in extraordinary ways.</p>
       </div>
