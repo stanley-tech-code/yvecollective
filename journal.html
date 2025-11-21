@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal | Yve Collective</title>
+  <meta name="description" content="Stories, guides, and curated inspirations from Yve Collective. Discover travel notes, hidden gems, and unforgettable retreats.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-cream: #F5F2EB;
+      --taupe: #6F655C;
+      --white: #FFFFFF;
+      --hover-cream: #F0EDE5;
+    }
+    body {
+      background-color: var(--bg-cream);
+      background-image: url('https://www.transparenttextures.com/patterns/zebra-3.png');
+      background-repeat: repeat;
+      font-family: 'Inter', sans-serif;
+      color: var(--taupe);
+    }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; color: var(--taupe); }
+    a { transition: all 0.2s ease; }
+  </style>
+</head>
+
+<body class="antialiased">
+<!-- Navbar -->
+<header class="absolute top-0 left-0 w-full z-30 flex justify-between items-center px-8 py-6 bg-transparent">
+  <a href="index.html" class="flex flex-col leading-tight">
+    <span class="text-2xl md:text-3xl font-serif tracking-wide text-[#6F655C]">Yve Collective</span>
+    <span class="text-xs md:text-sm uppercase tracking-[0.2em] text-[#6F655C]/80">Retreats & Beyond</span>
+  </a>
+
+  <nav class="hidden md:flex space-x-6 font-medium text-[#6F655C]">
+    <a href="index.html" class="hover:text-white transition">Home</a>
+    <a href="about.html" class="hover:text-white transition">About</a>
+    <a href="experiences.html" class="hover:text-white transition">Experiences</a>
+    <a href="journal.html" class="hover:text-white transition">Journal</a>
+    <a href="contact.html" class="hover:text-white transition">Contact</a>
+  </nav>
+
+  <!-- Mobile Menu Button -->
+  <button id="menuBtn" class="md:hidden text-[#6F655C] focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+    </svg>
+  </button>
+</header>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden fixed inset-0 bg-[#F5F2EB]/95 z-40 flex flex-col items-center justify-center space-y-8 text-lg font-medium text-[#6F655C]">
+  
+  <!-- Logo in mobile menu -->
+  <div class="flex flex-col items-center mb-8">
+    <span class="text-3xl font-serif tracking-wide text-[#6F655C]">Yve Collective</span>
+    <span class="text-sm uppercase tracking-[0.2em] text-[#6F655C]/80">Retreats & Beyond</span>
+  </div>
+
+  <a href="index.html" class="hover:text-white" onclick="toggleMenu()">Home</a>
+  <a href="about.html" class="hover:text-white" onclick="toggleMenu()">About</a>
+  <a href="experiences.html" class="hover:text-white" onclick="toggleMenu()">Experiences</a>
+  <a href="journal.html" class="hover:text-white" onclick="toggleMenu()">Journal</a>
+  <a href="contact.html" class="hover:text-white" onclick="toggleMenu()">Contact</a>
+</div>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  function toggleMenu() {
+    mobileMenu.classList.toggle('hidden');
+  }
+  menuBtn.addEventListener('click', toggleMenu);
+</script>
+
+<!-- Hero Section -->
+<section class="relative h-[55vh] flex items-center justify-center text-center pt-20 md:pt-0">
+  <img src="https://i.ibb.co/ksz5ZFvT/IMG-4377.jpg" 
+       alt="Journal Inspiration" 
+       class="absolute inset-0 w-full h-full object-cover">
+
+  <div class="absolute inset-0 bg-white/25"></div>
+
+  <div class="relative z-10 px-6 mt-10 md:mt-0">
+    <h2 class="text-3xl md:text-5xl font-serif text-white leading-snug">
+      Journal / Inspiration
+    </h2>
+
+    <p class="mt-3 text-sm md:text-xl text-white/90 max-w-xl mx-auto leading-relaxed md:leading-relaxed md:max-w-2xl">
+      Stories, travel notes & soulful reflections from our journeys across hidden landscapes and intentional escapes.
+    </p>
+  </div>
+</section>
+
+
+
+  <!-- Journal Articles -->
+  <section class="py-20 px-6 md:px-16">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+
+      <!-- Article 1 -->
+      <article class="bg-white rounded-2xl shadow-md overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80" class="w-full h-64 object-cover">
+        <div class="p-6">
+          <h3 class="text-2xl font-serif mb-3">Amboseli at Dawn The Soul of the Savannah</h3>
+          <p class="text-[#6F655C]/90 leading-relaxed mb-4">
+            A quiet morning wrapped in golden light, wandering elephants, and the timeless rhythm of the plains.
+          </p>
+          <a href="journal-post1.html" class="text-[#6F655C] hover:text-white bg-transparent hover:bg-[#6F655C] px-4 py-2 rounded-full border border-[#6F655C] inline-block">
+            Read More
+          </a>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="bg-white rounded-2xl shadow-md overflow-hidden">
+        <img src="https://i.ibb.co/RpnRMML3/IMG-4354.jpg" class="w-full h-64 object-cover">
+        <div class="p-6">
+          <h3 class="text-2xl font-serif mb-3">Designing the Perfect Beach Retreat</h3>
+          <p class="text-[#6F655C]/90 leading-relaxed mb-4">
+           From location choice to intention setting, here's how we shape meaningful travel experiences.
+          </p>
+          <a href="journal-post2.html" class="text-[#6F655C] hover:text-white bg-transparent hover:bg-[#6F655C] px-4 py-2 rounded-full border border-[#6F655C] inline-block">
+            Read More
+          </a>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="bg-white rounded-2xl shadow-md overflow-hidden">
+        <img src="https://i.ibb.co/LHbd1r0/IMG-8249-1.jpg" class="w-full h-64 object-cover">
+        <div class="p-6">
+          <h3 class="text-2xl font-serif mb-3">A Guide to Cape town Hidden Escapes</h3>
+          <p class="text-[#6F655C]/90 leading-relaxed mb-4">
+            Curated retreats for travelers seeking quiet luxury, intimate stays, and unforgettable hideaways.
+          </p>
+          <a href="journal-post3.html" class="text-[#6F655C] hover:text-white bg-transparent hover:bg-[#6F655C] px-4 py-2 rounded-full border border-[#6F655C] inline-block">
+            Read More
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#F5F2EB] text-[#6F655C] text-center py-10">
+    <p>&copy; 2025 Yve Collective. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

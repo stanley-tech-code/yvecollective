@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yve Collective | Curated Escapes & Effortless Travel</title>
+  <meta name="description" content="Yve Collective designs intimate, beautifully curated getaways and retreats across Kenya and beyond — experiences that inspire connection, rest, and renewal.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #F5F2EB;
+      background-image: url('https://www.transparenttextures.com/patterns/zebra-3.png');
+      background-repeat: repeat;
+      font-family: 'Inter', sans-serif;
+      color: #1a1918;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: #000000;
+    }
+    .accent { color: #FFFFFF; }
+
+    /* HERO SLIDESHOW */
+    .slideshow {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .slideshow img.active {
+      opacity: 1;
+    }
+
+    /* Floating button animation */
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Popup animation */
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    #whatsappPopup { animation: fadeSlide 0.6s ease forwards; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="absolute top-0 left-0 w-full z-30 flex justify-between items-center px-8 py-6 bg-transparent">
+    <a href="index.html" class="flex flex-col leading-tight">
+      <span class="text-2xl md:text-3xl font-serif tracking-wide text-[#6F655C]">Yve Collective</span>
+      <span class="text-xs md:text-sm uppercase tracking-[0.2em] text-[#6F655C]/80">Retreats & Beyond</span>
+    </a>
+    <nav class="hidden md:flex space-x-6 font-medium text-[#6F655C]">
+      <a href="index.html" class="hover:text-white transition">Home</a>
+      <a href="about.html" class="hover:text-white transition">About</a>
+      <a href="experiences.html" class="hover:text-white transition">Experiences</a>
+      <a href="journal.html" class="hover:text-white transition">Journal</a>
+      <a href="contact.html" class="hover:text-white transition">Contact</a>
+    </nav>
+    <!-- Mobile Menu Button -->
+    <button id="menuBtn" class="md:hidden text-[#6F655C] focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden fixed inset-0 bg-[#F5F2EB]/95 z-40 flex flex-col items-center justify-center space-y-8 text-lg font-medium text-[#6F655C]">
+    <div class="flex flex-col items-center mb-8">
+      <span class="text-3xl font-serif tracking-wide text-[#6F655C]">Yve Collective</span>
+      <span class="text-sm uppercase tracking-[0.2em] text-[#6F655C]/80">Retreats & Beyond</span>
+    </div>
+    <a href="index.html" class="hover:text-white" onclick="toggleMenu()">Home</a>
+    <a href="about.html" class="hover:text-white" onclick="toggleMenu()">About</a>
+    <a href="experiences.html" class="hover:text-white" onclick="toggleMenu()">Experiences</a>
+    <a href="journal.html" class="hover:text-white" onclick="toggleMenu()">Journal</a>
+    <a href="contact.html" class="hover:text-white" onclick="toggleMenu()">Contact</a>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function toggleMenu() { mobileMenu.classList.toggle('hidden'); }
+    menuBtn.addEventListener('click', toggleMenu);
+  </script>
+
+  <!-- WhatsApp Floating Button -->
+  <a id="whatsappButton" href="https://wa.me/2547XXXXXXXX?text=Hi%20Yve%20Collective,%20I'd%20like%20to%20plan%20a%20retreat." target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white shadow-lg rounded-full p-4 flex items-center justify-center transition duration-300 z-50" style="width: 60px; height: 60px; transform: scale(0); animation: pop 0.6s ease forwards 1s;">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512" class="w-8 h-8">
+      <path d="M380.9 97.1C339-3.6 228.1-33.8 138.8 9.1 58.7 46.5 11.1 124.2 24.9 207.8L3.4 314.1c-3.4 17.3 12.3 31.4 29.2 26.1l104.4-32.3c75.8 42.2 169.5 23.3 225.3-47.8 49.1-62.9 54.3-151 18.6-216zm-180.1 258c-19.5 0-38.6-4.7-55.7-13.7l-4-2.1-62 19.2 13-62.7-2.6-4.2c-29.9-48-20.4-110.2 21.4-148 37.9-33.8 94.3-40.3 139.4-16.1 42.7 23 69.4 67.7 69.4 115.7 0 72-58.5 131.9-128.5 131.9zm74.8-99.8c-4-2.1-23.7-11.7-27.4-13.1-3.7-1.4-6.4-2.1-9.2 2.1-2.7 4.2-10.6 13.1-13 15.7-2.4 2.6-4.8 2.9-8.8 1-4-2.1-16.9-6.2-32.2-19.7-11.9-10.5-19.9-23.5-22.3-27.5-2.4-4.2-.1-6.3 1.8-8.4 1.8-1.8 4-4.8 6-7.2s2.7-4.2 4-7c1.3-2.6.7-5.2-.3-7.3-1-2.1-9.2-22.3-12.6-30.6-3.3-8.4-6.8-7.2-9.2-7.4-2.4-.1-5.2-.1-8-.1s-7.3 1-11.1 5.2c-3.7 4.2-14.6 14.3-14.6 34.8s14.9 40.3 17 43.1c2.1 2.6 29.4 44.9 71.4 63 42 18.1 42 12.1 49.5 11.3 7.6-.7 23.7-9.8 27.1-19.4 3.3-9.6 3.3-17.8 2.4-19.4-1-1.5-3.6-2.6-7.6-4.7z"/>
+    </svg>
+  </a>
+
+  <!-- WhatsApp Welcome Popup -->
+  <div id="whatsappPopup" class="hidden fixed bottom-24 right-6 bg-white shadow-lg rounded-2xl px-4 py-3 text-sm text-[#333] border border-gray-200 z-50" style="max-width: 260px;">
+    👋 Hello & welcome to <strong>Yve Collective</strong><br> Tap here to chat with us.
+  </div>
+
+  <script>
+    // Show WhatsApp popup after 2s
+    setTimeout(() => {
+      const popup = document.getElementById('whatsappPopup');
+      popup.classList.remove('hidden');
+      setTimeout(() => { popup.classList.add('hidden'); }, 5000);
+    }, 2000);
+  </script>
+
+  <!-- Hero Section with Slideshow -->
+  <section class="relative h-screen flex items-center justify-center text-center text-white">
+    <div class="slideshow">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="active" alt="Slide 1">
+      <img src="https://assets.micontenthub.com/traveloffers/travel-tips/rabat_3Z4Gi9csM.jpg" alt="Slide 2">
+      <img src="https://nataniatravel.com/wp-content/uploads/2023/09/Dubai-Desert-Safari-ft-1030x562.jpg" alt="Slide 3">
+      <img src="https://i.ibb.co/vx9Bpk4g/IMG-4296.jpg" alt="Slide 4">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Slide 5">
+    </div>
+    <div class="absolute inset-0 bg-white/25"></div>
+    <div class="relative z-10 px-6 max-w-3xl">
+      <h2 class="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+        Curated Escapes.<br>
+        Effortless Travel.<br>
+        <span class="accent">The Yve Collective Way.</span>
+      </h2>
+      <p class="text-lg md:text-xl mb-8 text-[#FFFFFF]">
+        Yve Collective designs intimate, beautifully considered getaways across Kenya and beyond — experiences that inspire connection, rest, and renewal.
+      </p>
+      <div class="space-x-4">
+        <a href="#contact" class="bg-white text-[#6F655C] px-6 py-3 rounded-full font-medium hover:bg-[#F0EDE5] transition">
+          Plan Your Next Escape
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Simple image slideshow
+    const slides = document.querySelectorAll('.slideshow img');
+    let current = 0;
+    function showNextSlide() {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }
+    setInterval(showNextSlide, 4000);
+  </script>
+
+  <!-- Signature Experiences -->
+  <section id="experiences" class="py-20 px-6 md:px-16 text-center">
+    <h3 class="text-3xl md:text-4xl font-serif mb-12">Signature Experiences</h3>
+    <p class="max-w-3xl mx-auto mb-12 text-[#6F655C]/90">
+      At Yve Collective, we believe travel should feel intentional, calm, inspired, and deeply personal. From private safaris to boutique retreats, every journey is thoughtfully curated to reflect a refined sense of place and the beauty of slow discovery.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-white shadow-lg rounded-2xl overflow-hidden">
+        <img src="https://soroi.com/wp-content/uploads/2025/02/Leopards-Lair.jpg">
+        <h4 class="text-xl font-serif mt-4 mb-2 text-[#6F655C]">Safari Escapes</h4>
+        <p class="text-[#6F655C]/80 px-4 pb-4">A return to the wild, where comfort meets adventure under endless skies.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-2xl overflow-hidden">
+        <img src="https://azuravilla.com/wp-content/uploads/2023/10/887A3435-jpg.webp" class="w-full h-56 object-cover">
+        <h4 class="text-xl font-serif mt-4 mb-2 text-[#6F655C]">Coastal Retreats</h4>
+        <p class="text-[#6F655C]/80 px-4 pb-4">Serenity by the sea; sun-drenched days, soft breezes, and unhurried living.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-2xl overflow-hidden">
+        <img src="https://forrestnaromoru.com/wp-content/uploads/2018/07/DSC00464-scaled.jpg" class="w-full h-56 object-cover">
+        <h4 class="text-xl font-serif mt-4 mb-2 text-[#6F655C]">Mountain & Cabin Getaways</h4>
+        <p class="text-[#6F655C]/80 px-4 pb-4">Immersed in nature, surrounded by stillness and fresh open air.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-2xl overflow-hidden">
+        <img src="https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/60k/60444/p_2248707/1000_1760309551.jpg" class="w-full h-56 object-cover">
+        <h4 class="text-xl font-serif mt-4 mb-2 text-[#6F655C]">Curated Group Retreats</h4>
+        <p class="text-[#6F655C]/80 px-4 pb-4">Thoughtfully designed gatherings that bring people together in extraordinary ways.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="py-20 bg-white text-center text-[#6F655C]">
+    <h3 class="text-3xl md:text-4xl font-serif mb-6">
+      Wherever your journey leads, we’ll curate the experience.
+    </h3>
+     <a href="contact-options.html"
+    class="bg-[#F5F2EB] text-[#6F655C] px-8 py-3 rounded-full font-medium hover:bg-[var(--hover-cream)] transition">
+    Get in Touch
+  </a>
+</section>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#F5F2EB] text-[#6F655C] text-center py-8">
+    <p>&copy; 2025 Yve Collective. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

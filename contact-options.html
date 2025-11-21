@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Options | Yve Collective</title>
+  <meta name="description" content="Choose how you'd like to connect with Yve Collective — via WhatsApp or Email.">
+  
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-cream: #F5F2EB;
+      --taupe: #6F655C;
+      --white: #FFFFFF;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-cream);
+      background-image: url('https://www.transparenttextures.com/patterns/zebra-3.png');
+      background-repeat: repeat;
+      color: var(--taupe);
+    }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--taupe); }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen px-6">
+
+  <div class="bg-white rounded-2xl p-10 text-center shadow-xl max-w-md w-full">
+    <h2 class="text-3xl font-serif mb-4">Get in Touch</h2>
+    <p class="text-[#6F655C]/80 mb-8 leading-relaxed">
+      Choose how you'd like to connect with us — our team will be delighted to assist you.
+    </p>
+
+    <div class="space-y-4">
+      <!-- WhatsApp Button -->
+      <a href="https://wa.me/2547XXXXXXX" target="_blank"
+         class="block bg-green-500 text-white py-3 rounded-full font-medium hover:bg-green-600 transition">
+        Chat via WhatsApp
+      </a>
+
+      <!-- Email Button -->
+      <a href="mailto:hello@yvecollective.com"
+         class="block bg-[#F5F2EB] text-[#6F655C] py-3 rounded-full font-medium border border-[#ddd] hover:bg-[#F0EDE5] transition">
+        Send an Email
+      </a>
+    </div>
+
+    <a href="index.html" 
+       class="mt-8 inline-block text-sm text-[#6F655C]/70 hover:text-[#6F655C] underline">
+      ← Back to Home
+    </a>
+  </div>
+
+</body>
+</html>

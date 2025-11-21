@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amboseli at Dawn The Soul of the Savannah | Yve Collective</title>
+  <meta name="description" content="A serene morning in Amboseli, where the savannah awakens under golden light and nature takes center stage.">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #F5F2EB;
+      --taupe: #6F655C;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--taupe);
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- Navbar -->
+  <header class="w-full flex justify-between items-center px-8 py-6 bg-transparent">
+    <a href="index.html" class="text-2xl md:text-3xl font-serif tracking-wide text-[var(--taupe)]">
+      Yve Collective
+    </a>
+    <nav class="hidden md:flex space-x-6 text-[var(--taupe)] font-medium">
+      <a href="index.html">Home</a>
+      <a href="journal.html">Journal</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative h-[55vh] flex items-center justify-center text-center">
+    <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2000&q=90"
+         class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <div class="relative z-10 px-6">
+      <h1 class="text-4xl md:text-6xl text-white mb-4">Amboseli at Dawn</h1>
+      <p class="text-white/90 max-w-2xl mx-auto text-lg md:text-xl">
+        The Soul of the Savannah A morning wrapped in golden light and quiet wonder.
+      </p>
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+  <section class="max-w-5xl mx-auto px-6 md:px-10 lg:px-0 py-20 space-y-20">
+
+    <!-- INTRO -->
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="leading-relaxed text-lg">
+        As sunrise spills gently across the vast plains of Amboseli, the savannah comes alive in a soft golden glow.
+        Silhouettes of wandering elephants move gracefully under the shadow of Kilimanjaro a quiet dance between light,
+        land, and the unwavering rhythm of nature.
+      </p>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <img src="https://i.ibb.co/FbcX2q7G/IMG-0821.jpg"
+           class="rounded-xl shadow-md object-cover h-[340px] w-full">
+      <div>
+        <h2 class="text-3xl font-serif mb-4">Where Silence Speaks</h2>
+        <p class="leading-relaxed text-lg">
+          At dawn, Amboseli breathes. The air is still, broken only by distant calls of birds awakening with the sun.
+          Every moment feels intentional an invitation to pause, observe, and connect with the pulse of the wild.
+        </p>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="grid md:grid-cols-2 gap-10 items-center md:flex-row-reverse">
+      <img src="https://i.ibb.co/4ZyFWdrT/IMG-0144.jpg"
+           class="rounded-xl shadow-md object-cover h-[340px] w-full">
+      <div>
+        <h2 class="text-3xl font-serif mb-4">The Path of the Elephants</h2>
+        <p class="leading-relaxed text-lg">
+          Amboseli’s elephants iconic, gentle, wise move slowly across the glowing landscape. Their steps are steady,
+          reminding us that nature carries its own time. Nothing is rushed. Everything has a rhythm.
+        </p>
+      </div>
+    </div>
+
+    <!-- GALLERY 3 IMAGES -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <img class="rounded-lg shadow h-64 w-full object-cover"
+           src="https://i.ibb.co/WWKRV1rW/IMG-0747.jpg">
+      <img class="rounded-lg shadow h-64 w-full object-cover"
+           src="https://i.ibb.co/s8X0dcg/IMG-0798.jpg">
+      <img class="rounded-lg shadow h-64 w-full object-cover"
+           src="https://i.ibb.co/d04Lmy7K/IMG-0892.jpg">
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-serif mb-4">A Meditation on Stillness</h2>
+      <p class="leading-relaxed text-lg">
+        There is a calm in Amboseli that lingers long after you leave.  
+        It's in the warmth of the morning sun, the gentle sway of acacias,  
+        and the quiet harmony between every living thing on the plains.
+      </p>
+      <p class="leading-relaxed text-lg mt-6">
+        This is not just a destination  
+        it is a return to yourself.
+      </p>
+    </div>
+
+    <!-- FINAL FULL-WIDTH IMAGE -->
+    <img src="https://i.ibb.co/sv3xt3bf/IMG-0009.jpg"
+         class="w-full h-[420px] object-cover rounded-xl shadow-md">
+
+    <div class="text-center mt-10">
+      <a href="journal.html"
+         class="inline-block text-[var(--taupe)] hover:text-white bg-transparent hover:bg-[var(--taupe)] px-8 py-3 rounded-full border border-[var(--taupe)] transition">
+        ← Back to Journal
+      </a>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#F5F2EB] text-[#6F655C] text-center py-10">
+    <p>&copy; 2025 Yve Collective. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

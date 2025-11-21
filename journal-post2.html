@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zanzibar by the Sea A Symphony of Waves | Yve Collective</title>
+  <meta name="description" content="A serene morning in Zanzibar, where the Indian Ocean awakens under soft light and the rhythm of the tides takes center stage.">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #F5F2EB;
+      --taupe: #6F655C;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--taupe);
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- Navbar -->
+  <header class="w-full flex justify-between items-center px-8 py-6 bg-transparent">
+    <a href="index.html" class="text-2xl md:text-3xl font-serif tracking-wide text-[var(--taupe)]">
+      Yve Collective
+    </a>
+    <nav class="hidden md:flex space-x-6 text-[var(--taupe)] font-medium">
+      <a href="index.html">Home</a>
+      <a href="journal.html">Journal</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative h-[55vh] flex items-center justify-center text-center">
+    <img src="https://i.ibb.co/RpnRMML3/IMG-4354.jpg"
+         class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <div class="relative z-10 px-6">
+      <h1 class="text-4xl md:text-6xl text-white mb-4">Zanzibar by the Sea</h1>
+      <p class="text-white/90 max-w-2xl mx-auto text-lg md:text-xl">
+        A Symphony of Waves A morning wrapped in ocean breeze, soft tides, and quiet coastal magic.
+      </p>
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+  <section class="max-w-5xl mx-auto px-6 md:px-10 lg:px-0 py-20 space-y-20">
+
+    <!-- INTRO -->
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="leading-relaxed text-lg">
+        As sunrise touches the turquoise waters of Zanzibar, the coastline glows with gentle light. 
+        Wooden dhows drift across the horizon while palm shadows dance quietly on the sand a peaceful rhythm shaped by the sea.
+      </p>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <img src="https://i.ibb.co/My32QYZY/IMG-4312.jpg"
+           class="rounded-xl shadow-md object-cover h-[340px] w-full">
+      <div>
+        <h2 class="text-3xl font-serif mb-4">Where the Ocean Whispers</h2>
+        <p class="leading-relaxed text-lg">
+          At dawn, Zanzibar feels still yet alive. The air carries the scent of salt and morning breeze.
+          Every moment invites you to slow down to breathe in the calm and let the sea remind you of simplicity.
+        </p>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="grid md:grid-cols-2 gap-10 items-center md:flex-row-reverse">
+      <img src="https://i.ibb.co/vx9Bpk4g/IMG-4296.jpg"
+           class="rounded-xl shadow-md object-cover h-[340px] w-full">
+      <div>
+        <h2 class="text-3xl font-serif mb-4">The Rhythm of the Tides</h2>
+        <p class="leading-relaxed text-lg">
+          The tides move gently, shaping the shoreline in their own unhurried way. 
+          Fishermen guide their boats with familiarity, following a rhythm passed down for generations
+          a reminder that the ocean sets its own pace.
+        </p>
+      </div>
+    </div>
+
+    <!-- GALLERY 3 IMAGES -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <img class="rounded-lg shadow h-64 w-full object-cover"
+           src="https://i.ibb.co/ksz5ZFvT/IMG-4377.jpg">
+      <img class="rounded-lg shadow h-64 w-full object-cover"
+           src="https://i.ibb.co/BHh025Hz/IMG-4279.jpg">
+      <img class="rounded-lg shadow h-64 w-full object-cover"
+           src="https://i.ibb.co/kgsCss0P/8cf9612a-59a7-4ace-9d86-deb97205e84f.jpg">
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-serif mb-4">A Meditation by the Shore</h2>
+      <p class="leading-relaxed text-lg">
+        Zanzibar carries a stillness that lingers long after you leave.  
+        It's in the warm breeze, the gentle roll of waves,  
+        and the effortless harmony between sky and sea.
+      </p>
+      <p class="leading-relaxed text-lg mt-6">
+        This is not just an island  
+        it is a feeling you return to.
+      </p>
+    </div>
+
+    <!-- FINAL FULL-WIDTH IMAGE -->
+    <img src="https://i.ibb.co/cc85JsnD/IMG-4232.jpg"
+         class="w-full h-[420px] object-cover rounded-xl shadow-md">
+
+    <div class="text-center mt-10">
+      <a href="journal.html"
+         class="inline-block text-[var(--taupe)] hover:text-white bg-transparent hover:bg-[var(--taupe)] px-8 py-3 rounded-full border border-[var(--taupe)] transition">
+        ← Back to Journal
+      </a>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#F5F2EB] text-[#6F655C] text-center py-10">
+    <p>&copy; 2025 Yve Collective. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
