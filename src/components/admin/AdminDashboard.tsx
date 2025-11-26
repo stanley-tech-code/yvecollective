@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ImageUploadCard } from './ImageUploadCard';
+import { JournalPostEditor } from './JournalPostEditor';
 
 interface Image {
   id: string;
@@ -10,11 +11,38 @@ interface Image {
   altText: string | null;
 }
 
-interface AdminDashboardProps {
-  images: Image[];
+interface JournalSection {
+  id: string;
+  title: string;
+  content: string;
+  image: string;
+  reverse: boolean;
+  order: number;
 }
 
-const SECTIONS = {
+interface JournalPost {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+  heroImage: string;
+  intro: string;
+  sections: JournalSection[];
+  gallery: string[];
+  conclusionTitle: string;
+  conclusionContent: string;
+  conclusionImage: string;
+  thumbnailImage: string;
+  excerpt: string;
+  published: boolean;
+}
+
+interface AdminDashboardProps {
+  images: Image[];
+  journalPosts: JournalPost[];
+}
+
+const IMAGE_SECTIONS = {
   'Homepage': [
     { id: 'hero-slide-1', label: 'Hero Slide 1' },
     { id: 'hero-slide-2', label: 'Hero Slide 2' },
@@ -23,6 +51,7 @@ const SECTIONS = {
     { id: 'hero-slide-5', label: 'Hero Slide 5' },
   ],
   'Experiences': [
+    { id: 'experiences-hero', label: 'Experiences Page Hero' },
     { id: 'experience-safari', label: 'Safari Escapes' },
     { id: 'experience-coastal', label: 'Coastal Retreats' },
     { id: 'experience-mountain', label: 'Mountain & Cabin' },
@@ -31,12 +60,14 @@ const SECTIONS = {
   'About': [
     { id: 'about-hero', label: 'About Hero Image' },
   ],
-  'Journal': [
-    { id: 'journal-hero', label: 'Journal Hero Image' },
+  'Journal Hero': [
+    { id: 'journal-hero', label: 'Journal Page Hero Image' },
   ]
 };
 
-export function AdminDashboard({ images }: AdminDashboardProps) {
+const TABS = ['Homepage', 'Experiences', 'About', 'Journal Hero', 'Journal Posts'];
+
+export function AdminDashboard({ images, journalPosts }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState('Homepage');
 
   const getImage = (sectionId: string) => {
@@ -49,13 +80,13 @@ export function AdminDashboard({ images }: AdminDashboardProps) {
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-serif text-[#6F655C]">Content Management</h1>
           <div className="text-sm text-[#6F655C]">
-            Total Images: {images.length}
+            Total Images: {images.length} | Journal Posts: {journalPosts.length}
           </div>
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="border-b border-gray-100 p-4 flex gap-4 overflow-x-auto">
-            {Object.keys(SECTIONS).map((tab) => (
+            {TABS.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -70,16 +101,20 @@ export function AdminDashboard({ images }: AdminDashboardProps) {
           </div>
 
           <div className="p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {SECTIONS[activeTab as keyof typeof SECTIONS].map((section) => (
-                <ImageUploadCard
-                  key={section.id}
-                  sectionId={section.id}
-                  label={section.label}
-                  currentImage={getImage(section.id)}
-                />
-              ))}
-            </div>
+            {activeTab === 'Journal Posts' ? (
+              <JournalPostEditor posts={journalPosts} />
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {IMAGE_SECTIONS[activeTab as keyof typeof IMAGE_SECTIONS]?.map((section) => (
+                  <ImageUploadCard
+                    key={section.id}
+                    sectionId={section.id}
+                    label={section.label}
+                    currentImage={getImage(section.id)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

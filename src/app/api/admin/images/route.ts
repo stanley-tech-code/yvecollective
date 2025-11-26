@@ -20,9 +20,10 @@ export async function POST(request: Request) {
   }
 
   try {
-    // 1. Upload to Vercel Blob
+    // 1. Upload to Vercel Blob (addRandomSuffix ensures unique filenames)
     const blob = await put(filename, request.body, {
       access: 'public',
+      addRandomSuffix: true,
     });
 
     // 2. Save metadata to Database

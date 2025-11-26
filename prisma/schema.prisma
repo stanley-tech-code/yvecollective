@@ -6,19 +6,51 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("PRISMA_DATABASE_URL")
-  directUrl = env("POSTGRES_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")  // Changed from PRISMA_DATABASE_URL
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Image {
-  id          String   @id @default(cuid())
-  sectionId   String
-  url         String
-  altText     String?
-  fileName    String
-  uploadedAt  DateTime @default(now())
-  isActive    Boolean  @default(true)
-
+  id         String   @id @default(cuid())
+  sectionId  String
+  url        String
+  altText    String?
+  fileName   String
+  uploadedAt DateTime @default(now())
+  isActive   Boolean  @default(true)
+  
   @@index([sectionId])
+}
+
+model JournalPost {
+  id                String           @id @default(cuid())
+  slug              String           @unique
+  title             String
+  subtitle          String
+  heroImage         String
+  intro             String           @db.Text
+  sections          JournalSection[]
+  gallery           String[]
+  conclusionTitle   String
+  conclusionContent String           @db.Text
+  conclusionImage   String
+  thumbnailImage    String
+  excerpt           String           @db.Text
+  published         Boolean          @default(false)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+}
+
+model JournalSection {
+  id      String      @id @default(cuid())
+  postId  String
+  post    JournalPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  title   String
+  content String      @db.Text
+  image   String
+  reverse Boolean     @default(false)
+  order   Int
+  
+  @@index([postId])
 }

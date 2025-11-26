@@ -1,19 +1,26 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { getCMSImage } from '@/lib/cms';
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const heroImg = await getCMSImage('about-hero');
+
   return (
     <>
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center justify-center text-center text-white">
         <div className="absolute inset-0 w-full h-full">
-          <Image
-            src="https://i.ibb.co/84jPyhxn/Journal-Cape-Point.jpg"
-            alt="About Yve Collective"
-            fill
-            className="object-cover"
-            priority
-          />
+          {heroImg?.url ? (
+            <Image
+              src={heroImg.url}
+              alt={heroImg.altText || "About Yve Collective"}
+              fill
+              className="object-cover"
+              priority
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-[#6F655C] to-[#8B7355]" />
+          )}
         </div>
         <div className="absolute inset-0 bg-white/25"></div>
         <div className="relative z-10 px-6">

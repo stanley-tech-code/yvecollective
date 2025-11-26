@@ -2,15 +2,15 @@
 const nextConfig = {
   images: {
     remotePatterns: [
+      // Vercel Blob Store - primary image storage
+      {
+        protocol: "https",
+        hostname: "ozkemptmezwoxlpi.public.blob.vercel-storage.com",
+      },
+      // Legacy image hosts - kept temporarily for seeded data migration
+      // These can be removed once all images are uploaded through the admin dashboard
       { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "https", hostname: "assets.micontenthub.com" },
-      { protocol: "https", hostname: "nataniatravel.com" },
       { protocol: "https", hostname: "i.ibb.co" },
-      { protocol: "https", hostname: "soroi.com" },
-      { protocol: "https", hostname: "azuravilla.com" },
-      { protocol: "https", hostname: "forrestnaromoru.com" },
-      { protocol: "https", hostname: "bookretreats.com" },
-      { protocol: "https", hostname: "www.transparenttextures.com" },
     ],
   },
 };

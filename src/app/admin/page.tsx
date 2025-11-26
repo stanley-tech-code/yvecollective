@@ -13,10 +13,20 @@ export default async function AdminPage() {
     redirect('/login');
   }
 
-  const images = await prisma.image.findMany({
-    where: { isActive: true },
-    orderBy: { uploadedAt: 'desc' },
-  });
+  const [images, journalPosts] = await Promise.all([
+    prisma.image.findMany({
+      where: { isActive: true },
+      orderBy: { uploadedAt: 'desc' },
+    }),
+    prisma.journalPost.findMany({
+      include: {
+        sections: {
+          orderBy: { order: 'asc' },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+    }),
+  ]);
 
-  return <AdminDashboard images={images} />;
+  return <AdminDashboard images={images} journalPosts={journalPosts} />;
 }

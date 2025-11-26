@@ -1,34 +1,56 @@
 import Image from 'next/image';
 import { getCMSImage } from '@/lib/cms';
 
-export async function SignatureExperiences() {
-  const safariImg = await getCMSImage('experience-safari');
-  const coastalImg = await getCMSImage('experience-coastal');
-  const mountainImg = await getCMSImage('experience-mountain');
-  const groupImg = await getCMSImage('experience-group');
+interface Experience {
+  title: string;
+  description: string;
+  image: string | null;
+  altText: string;
+}
 
-  const experiences = [
+export async function SignatureExperiences() {
+  // Fetch images from CMS - no fallbacks
+  const [safariImg, coastalImg, mountainImg, groupImg] = await Promise.all([
+    getCMSImage('experience-safari'),
+    getCMSImage('experience-coastal'),
+    getCMSImage('experience-mountain'),
+    getCMSImage('experience-group'),
+  ]);
+
+  const allExperiences: Experience[] = [
     {
       title: "Safari Escapes",
       description: "A return to the wild, where comfort meets adventure under endless skies.",
-      image: safariImg?.url || "https://soroi.com/wp-content/uploads/2025/02/Leopards-Lair.jpg",
+      image: safariImg?.url || null,
+      altText: safariImg?.altText || "Safari Escapes",
     },
     {
       title: "Coastal Retreats",
       description: "Serenity by the sea; sun-drenched days, soft breezes, and unhurried living.",
-      image: coastalImg?.url || "https://azuravilla.com/wp-content/uploads/2023/10/887A3435-jpg.webp",
+      image: coastalImg?.url || null,
+      altText: coastalImg?.altText || "Coastal Retreats",
     },
     {
       title: "Mountain & Cabin Getaways",
       description: "Immersed in nature, surrounded by stillness and fresh open air.",
-      image: mountainImg?.url || "https://forrestnaromoru.com/wp-content/uploads/2018/07/DSC00464-scaled.jpg",
+      image: mountainImg?.url || null,
+      altText: mountainImg?.altText || "Mountain & Cabin Getaways",
     },
     {
       title: "Curated Group Retreats",
       description: "Thoughtfully designed gatherings that bring people together in extraordinary ways.",
-      image: groupImg?.url || "https://bookretreats.com/cdn-cgi/image/width=1200,quality=65,f=auto,sharpen=1,fit=cover,gravity=auto/assets/photo/retreat/0m/60k/60444/p_2248707/1000_1760309551.jpg",
+      image: groupImg?.url || null,
+      altText: groupImg?.altText || "Curated Group Retreats",
     },
   ];
+
+  // Filter to only show experiences with uploaded images
+  const experiences = allExperiences.filter((exp) => exp.image !== null);
+
+  // Don't render section if no experiences have images
+  if (experiences.length === 0) {
+    return null;
+  }
 
   return (
     <section id="experiences" className="py-20 px-6 md:px-16 text-center">
@@ -36,13 +58,13 @@ export async function SignatureExperiences() {
       <p className="max-w-3xl mx-auto mb-12 text-[#6F655C]/90">
         At Yve Collective, we believe travel should feel intentional, calm, inspired, and deeply personal. From private safaris to boutique retreats, every journey is thoughtfully curated to reflect a refined sense of place and the beauty of slow discovery.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className={`grid grid-cols-1 md:grid-cols-2 ${experiences.length >= 4 ? 'lg:grid-cols-4' : experiences.length === 3 ? 'lg:grid-cols-3' : ''} gap-8`}>
         {experiences.map((exp) => (
           <div key={exp.title} className="bg-white shadow-lg rounded-2xl overflow-hidden">
             <div className="relative h-56 w-full">
               <Image
-                src={exp.image}
-                alt={exp.title}
+                src={exp.image!}
+                alt={exp.altText}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover"
