@@ -5,6 +5,9 @@ import { ValuesSection } from '@/components/sections/ValuesSection';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { ArrowRight } from 'lucide-react';
 
+// Disable caching to always fetch fresh data from database
+export const dynamic = 'force-dynamic';
+
 export default async function AboutPage() {
   const heroImg = await getCMSImage('about-hero');
 

@@ -5,6 +5,9 @@ import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { ExperienceCard } from '@/components/sections/ExperienceCard';
 import { ArrowRight, Compass, Users, Sparkles } from 'lucide-react';
 
+// Disable caching to always fetch fresh data from database
+export const dynamic = 'force-dynamic';
+
 interface Experience {
   title: string;
   description: string;

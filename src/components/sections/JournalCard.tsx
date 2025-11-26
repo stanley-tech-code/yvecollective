@@ -61,3 +61,5 @@ export function JournalCard({ slug, title, excerpt, thumbnailImage, index }: Jou
   );
 }
 
+
+
