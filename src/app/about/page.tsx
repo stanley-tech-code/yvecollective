@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getCMSImage } from '@/lib/cms';
+import { ValuesSection } from '@/components/sections/ValuesSection';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { ArrowRight } from 'lucide-react';
 
 export default async function AboutPage() {
   const heroImg = await getCMSImage('about-hero');
@@ -8,7 +11,7 @@ export default async function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center justify-center text-center text-white">
+      <section className="relative h-[70vh] flex items-center justify-center text-center text-white">
         <div className="absolute inset-0 w-full h-full">
           {heroImg?.url ? (
             <Image
@@ -19,56 +22,81 @@ export default async function AboutPage() {
               priority
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-[#6F655C] to-[#8B7355]" />
+            <div className="w-full h-full bg-gradient-to-br from-[#6F655C] via-[#8B7355] to-[#A69580]" />
           )}
         </div>
-        <div className="absolute inset-0 bg-white/25"></div>
-        <div className="relative z-10 px-6">
-          <h2 className="text-4xl md:text-5xl font-serif leading-tight text-black">
-            Intentional Travel.<br /> Inspired Living.<br />
-            <span className="text-[#333232]">The Collective Spirit.</span>
-          </h2>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40" />
+        <div className="relative z-10 px-6 max-w-4xl">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif leading-tight text-white drop-shadow-lg">
+            Intentional Travel.
+            <br />
+            Inspired Living.
+            <br />
+            <span className="text-white/90">The Collective Spirit.</span>
+          </h1>
         </div>
+        
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F5F2EB] to-transparent" />
       </section>
 
       {/* Our Story */}
-      <section className="py-20 px-6 md:px-20 bg-[#F5F2EB] text-center">
+      <section className="py-24 px-6 md:px-20 bg-[#F5F2EB] text-center">
         <div className="max-w-3xl mx-auto">
-          <h3 className="text-3xl md:text-4xl font-serif mb-6 text-[#333232]">Our Story</h3>
-          <p className="text-lg leading-relaxed text-[#333232]">Yve Collective was founded from a love for beautiful spaces and the desire to travel with meaning.</p>
-          <p className="text-lg leading-relaxed mt-6 text-[#333232]">We believe that true luxury lies in authenticity, in unhurried moments, natural beauty, and the quiet comfort of well-chosen details.</p>
-          <p className="text-lg leading-relaxed mt-6 text-[#333232]">Each experience we craft is guided by a sense of place and purpose. Whether you’re seeking solitude in the wild, connection with loved ones, or the warmth of community through curated retreats, Yve Collective creates journeys that linger long after you’ve returned home.</p>
+          <ScrollReveal>
+            <h2 className="text-3xl md:text-5xl font-serif mb-8 text-[#333232]">Our Story</h2>
+          </ScrollReveal>
+          
+          <div className="space-y-6">
+            <ScrollReveal delay={0.1}>
+              <p className="text-lg md:text-xl leading-relaxed text-[#6F655C]">
+                Yve Collective was founded from a love for beautiful spaces and the desire to travel with meaning.
+              </p>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={0.2}>
+              <p className="text-lg md:text-xl leading-relaxed text-[#6F655C]">
+                We believe that true luxury lies in authenticity, in unhurried moments, natural beauty, and the quiet comfort of well-chosen details.
+              </p>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={0.3}>
+              <p className="text-lg md:text-xl leading-relaxed text-[#6F655C]">
+                Each experience we craft is guided by a sense of place and purpose. Whether you&apos;re seeking solitude in the wild, connection with loved ones, or the warmth of community through curated retreats, Yve Collective creates journeys that linger long after you&apos;ve returned home.
+              </p>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-20 px-6 md:px-20 bg-white text-center">
-        <h3 className="text-3xl md:text-4xl font-serif mb-12 text-[#333232]">Our Values</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 flex items-center justify-center rounded-full mb-4 text-2xl bg-white text-[#333232] border border-[#6F655C]/10">🌿</div>
-            <h4 className="text-xl font-serif mb-2 text-[#333232]">Authenticity</h4>
-            <p className="max-w-xs text-[#333232]/80">Every destination we feature has been personally experienced and chosen for its genuine charm and soul.</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 flex items-center justify-center rounded-full mb-4 text-2xl bg-white text-[#333232] border border-[#6F655C]/10">🤍</div>
-            <h4 className="text-xl font-serif mb-2 text-[#333232]">Connection</h4>
-            <p className="max-w-xs text-[#333232]/80">We design journeys that nurture meaningful encounters and shared experiences.</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 flex items-center justify-center rounded-full mb-4 text-2xl bg-white text-[#333232] border border-[#6F655C]/10">✨</div>
-            <h4 className="text-xl font-serif mb-2 text-[#333232]">Curation</h4>
-            <p className="max-w-xs text-[#333232]/80">Every detail, from landscape to lodging, is thoughtfully selected to reflect elegance and ease.</p>
-          </div>
-        </div>
-      </section>
+      {/* Values - Using client component with Lucide icons */}
+      <ValuesSection />
 
       {/* CTA */}
-      <section className="py-20 bg-white text-center text-[#333232]">
-        <h3 className="text-3xl md:text-4xl font-serif mb-6">Yve Collective where travel meets intention.</h3>
-        <Link href="/contact-options" className="bg-[#F5F2EB] text-[#6F655C] px-8 py-3 rounded-full font-medium hover:bg-white transition inline-block">
-          Get in Touch
-        </Link>
+      <section className="py-24 bg-[#F5F2EB] text-center relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/50 rounded-full blur-3xl" />
+        </div>
+        
+        <div className="relative z-10 max-w-3xl mx-auto px-6">
+          <ScrollReveal>
+            <h3 className="text-3xl md:text-5xl font-serif mb-8 text-[#333232] leading-tight">
+              Yve Collective
+              <br />
+              <span className="text-[#6F655C]">where travel meets intention.</span>
+            </h3>
+          </ScrollReveal>
+          
+          <ScrollReveal delay={0.2}>
+            <Link 
+              href="/contact-options" 
+              className="group inline-flex items-center gap-3 bg-[#6F655C] text-white px-8 py-4 rounded-full font-medium hover:bg-[#5a534b] transition-all duration-300 hover:shadow-xl hover:shadow-[#6F655C]/20"
+            >
+              Get in Touch
+              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </ScrollReveal>
+        </div>
       </section>
     </>
   );

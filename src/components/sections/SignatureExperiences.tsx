@@ -1,5 +1,6 @@
-import Image from 'next/image';
 import { getCMSImage } from '@/lib/cms';
+import { ExperienceCard } from './ExperienceCard';
+import { ScrollReveal } from '../animations/ScrollReveal';
 
 interface Experience {
   title: string;
@@ -53,26 +54,29 @@ export async function SignatureExperiences() {
   }
 
   return (
-    <section id="experiences" className="py-20 px-6 md:px-16 text-center">
-      <h3 className="text-3xl md:text-4xl font-serif mb-12 text-black">Signature Experiences</h3>
-      <p className="max-w-3xl mx-auto mb-12 text-[#6F655C]/90">
-        At Yve Collective, we believe travel should feel intentional, calm, inspired, and deeply personal. From private safaris to boutique retreats, every journey is thoughtfully curated to reflect a refined sense of place and the beauty of slow discovery.
-      </p>
-      <div className={`grid grid-cols-1 md:grid-cols-2 ${experiences.length >= 4 ? 'lg:grid-cols-4' : experiences.length === 3 ? 'lg:grid-cols-3' : ''} gap-8`}>
-        {experiences.map((exp) => (
-          <div key={exp.title} className="bg-white shadow-lg rounded-2xl overflow-hidden">
-            <div className="relative h-56 w-full">
-              <Image
-                src={exp.image!}
-                alt={exp.altText}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover"
-              />
-            </div>
-            <h4 className="text-xl font-serif mt-4 mb-2 text-[#6F655C]">{exp.title}</h4>
-            <p className="text-[#6F655C]/80 px-4 pb-4">{exp.description}</p>
-          </div>
+    <section id="experiences" className="py-24 px-6 md:px-16 text-center bg-[#F5F2EB]">
+      <ScrollReveal>
+        <h3 className="text-3xl md:text-5xl font-serif mb-6 text-[#333232]">
+          Signature Experiences
+        </h3>
+      </ScrollReveal>
+      
+      <ScrollReveal delay={0.2}>
+        <p className="max-w-3xl mx-auto mb-16 text-lg text-[#6F655C]/90 leading-relaxed">
+          At Yve Collective, we believe travel should feel intentional, calm, inspired, and deeply personal. From private safaris to boutique retreats, every journey is thoughtfully curated to reflect a refined sense of place and the beauty of slow discovery.
+        </p>
+      </ScrollReveal>
+      
+      <div className={`grid grid-cols-1 md:grid-cols-2 ${experiences.length >= 4 ? 'lg:grid-cols-4' : experiences.length === 3 ? 'lg:grid-cols-3' : ''} gap-8 max-w-7xl mx-auto`}>
+        {experiences.map((exp, index) => (
+          <ExperienceCard
+            key={exp.title}
+            title={exp.title}
+            description={exp.description}
+            image={exp.image!}
+            altText={exp.altText}
+            index={index}
+          />
         ))}
       </div>
     </section>
