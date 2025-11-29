@@ -11,13 +11,13 @@ export default function ContactOptionsPage() {
 
         <div className="space-y-4">
           {/* WhatsApp Button */}
-          <a href="https://wa.me/2547XXXXXXX" target="_blank" rel="noopener noreferrer"
+          <a href="https://wa.me/254791405180" target="_blank" rel="noopener noreferrer"
             className="block bg-green-500 text-white py-3 rounded-full font-medium hover:bg-green-600 transition">
             Chat via WhatsApp
           </a>
 
           {/* Email Button */}
-          <a href="mailto:hello@yvecollective.com"
+          <a href="mailto:info.chyvegroup@gmail.com"
             className="block bg-[#F5F2EB] text-[#6F655C] py-3 rounded-full font-medium border border-[#ddd] hover:bg-[#F0EDE5] transition">
             Send an Email
           </a>

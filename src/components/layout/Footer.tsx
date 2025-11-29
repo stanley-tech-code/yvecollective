@@ -20,7 +20,7 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { href: 'https://instagram.com', icon: Instagram, label: 'Instagram' },
+  { href: 'https://www.instagram.com/chayve_groupke?igsh=MXc4cmw5azJyaXE0aw==', icon: Instagram, label: 'Instagram' },
   { href: 'https://facebook.com', icon: Facebook, label: 'Facebook' },
 ];
 
@@ -30,7 +30,7 @@ export function Footer() {
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-[#6F655C]/10 rounded-full -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#6F655C]/10 rounded-full translate-x-1/2 translate-y-1/2" />
-      
+
       <div className="relative z-10">
         {/* Main Footer Content */}
         <div className="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-20">
@@ -44,7 +44,7 @@ export function Footer() {
               <p className="text-white/70 leading-relaxed mb-6 max-w-xs">
                 Curating intimate, beautifully considered getaways across Kenya and beyond.
               </p>
-              
+
               {/* Social Links */}
               <div className="flex gap-4">
                 {socialLinks.map((social) => {
@@ -73,7 +73,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.explore.map((link) => (
                   <li key={link.label}>
-                    <Link 
+                    <Link
                       href={link.href}
                       className="text-white/70 hover:text-white transition-colors duration-300 inline-flex items-center gap-2 group"
                     >
@@ -91,7 +91,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.experiences.map((link, index) => (
                   <li key={`${link.label}-${index}`}>
-                    <Link 
+                    <Link
                       href={link.href}
                       className="text-white/70 hover:text-white transition-colors duration-300 inline-flex items-center gap-2 group"
                     >
@@ -108,21 +108,21 @@ export function Footer() {
               <h4 className="text-lg font-serif mb-6 text-white">Get in Touch</h4>
               <ul className="space-y-4">
                 <li>
-                  <a 
-                    href="mailto:hello@yvecollective.com" 
+                  <a
+                    href="mailto:info.chyvegroup@gmail.com"
                     className="text-white/70 hover:text-white transition-colors duration-300 flex items-start gap-3"
                   >
                     <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                    <span>hello@yvecollective.com</span>
+                    <span>info.chyvegroup@gmail.com</span>
                   </a>
                 </li>
                 <li>
-                  <a 
-                    href="tel:+254700000000" 
+                  <a
+                    href="tel:+254791405180"
                     className="text-white/70 hover:text-white transition-colors duration-300 flex items-start gap-3"
                   >
                     <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                    <span>+254 700 000 000</span>
+                    <span>+254 791 405 180</span>
                   </a>
                 </li>
                 <li className="flex items-start gap-3 text-white/70">
@@ -130,26 +130,6 @@ export function Footer() {
                   <span>Nairobi, Kenya</span>
                 </li>
               </ul>
-              
-              {/* Newsletter */}
-              <div className="mt-8">
-                <p className="text-sm text-white/60 mb-3">Subscribe to our newsletter</p>
-                <form className="flex gap-2">
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    className="flex-1 bg-white/10 border border-white/20 rounded-full px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/40 transition-colors"
-                  />
-                  <motion.button
-                    type="submit"
-                    className="bg-white text-[#333232] px-4 py-2 rounded-full text-sm font-medium hover:bg-white/90 transition-colors"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Join
-                  </motion.button>
-                </form>
-              </div>
             </div>
           </div>
         </div>
