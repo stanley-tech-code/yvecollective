@@ -17,7 +17,7 @@ export default function ContactOptionsPage() {
           </a>
 
           {/* Email Button */}
-          <a href="mailto:info.chyvegroup@gmail.com"
+          <a href="mailto:info.chayvegroup@gmail.com"
             className="block bg-[#F5F2EB] text-[#6F655C] py-3 rounded-full font-medium border border-[#ddd] hover:bg-[#F0EDE5] transition">
             Send an Email
           </a>

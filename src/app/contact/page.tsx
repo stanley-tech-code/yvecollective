@@ -63,13 +63,13 @@ export default function ContactPage() {
           <div className="flex flex-col md:flex-row justify-center gap-6 mb-16 max-w-2xl mx-auto">
             <ScrollReveal delay={0.1} className="flex-1">
               <motion.a
-                href="mailto:info.chyvegroup@gmail.com"
+                href="mailto:info.chayvegroup@gmail.com"
                 className="flex items-center justify-center gap-3 bg-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-5 rounded-2xl text-lg text-[#6F655C] hover:-translate-y-1"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <Mail className="w-5 h-5" />
-                info.chyvegroup@gmail.com
+                info.chayvegroup@gmail.com
               </motion.a>
             </ScrollReveal>
 

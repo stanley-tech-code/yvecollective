@@ -20,7 +20,7 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { href: 'https://www.instagram.com/chayve_groupke?igsh=MXc4cmw5azJyaXE0aw==', icon: Instagram, label: 'Instagram' },
+  { href: 'https://www.instagram.com/beingyve/', icon: Instagram, label: 'Instagram' },
   { href: 'https://facebook.com', icon: Facebook, label: 'Facebook' },
 ];
 
@@ -109,11 +109,11 @@ export function Footer() {
               <ul className="space-y-4">
                 <li>
                   <a
-                    href="mailto:info.chyvegroup@gmail.com"
+                    href="mailto:info.chayvegroup@gmail.com"
                     className="text-white/70 hover:text-white transition-colors duration-300 flex items-start gap-3"
                   >
                     <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                    <span>info.chyvegroup@gmail.com</span>
+                    <span>info.chayvegroup@gmail.com</span>
                   </a>
                 </li>
                 <li>
