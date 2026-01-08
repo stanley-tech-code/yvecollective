@@ -54,3 +54,78 @@ model JournalSection {
   
   @@index([postId])
 }
+
+// Property Management Models
+model Property {
+  id                String   @id @default(cuid())
+  title             String
+  slug              String   @unique
+  categorySlug      String   // safari-escapes, coastal-retreats, mountain-cabin-getaways
+  tagline           String?  @db.VarChar(150)
+  description       String   @db.Text
+  propertyType      String   // villa, cabin, lodge, tent, etc.
+  
+  // Location
+  country           String
+  city              String
+  address           String?
+  latitude          Float?
+  longitude         Float?
+  nearbyAttractions String[]
+  
+  // Capacity
+  maxGuests         Int
+  bedrooms          Int
+  bathrooms         Int
+  bedConfigurations String?
+  
+  // Pricing
+  nightlyRate       Float
+  weekendRate       Float?
+  cleaningFee       Float?
+  serviceFeePercent Float?   @default(10)
+  minimumStay       Int      @default(1)
+  cancellationPolicy String  @default("flexible")
+  
+  // Availability
+  blockedDates      DateTime[]
+  instantBook       Boolean  @default(false)
+  
+  // Status
+  isPublished       Boolean  @default(false)
+  isFeatured        Boolean  @default(false)
+  sortOrder         Int      @default(0)
+  
+  // Relations
+  images            PropertyImage[]
+  amenities         PropertyAmenity[]
+  
+  // Metadata
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([categorySlug])
+  @@index([isPublished, isFeatured])
+}
+
+model PropertyImage {
+  id          String   @id @default(cuid())
+  propertyId  String
+  property    Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  url         String
+  altText     String?
+  isFeatured  Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  
+  @@index([propertyId])
+}
+
+model PropertyAmenity {
+  id          String   @id @default(cuid())
+  propertyId  String
+  property    Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  name        String
+  icon        String?
+  
+  @@index([propertyId])
+}

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ImageUploadCard } from './ImageUploadCard';
 import { JournalPostEditor } from './JournalPostEditor';
+import { PropertyEditor } from './PropertyEditor';
 
 interface Image {
   id: string;
@@ -37,9 +38,56 @@ interface JournalPost {
   published: boolean;
 }
 
+interface PropertyImage {
+  id?: string;
+  url: string;
+  altText: string | null;
+  isFeatured: boolean;
+  sortOrder: number;
+}
+
+interface PropertyAmenity {
+  id?: string;
+  name: string;
+  icon: string | null;
+}
+
+interface Property {
+  id: string;
+  title: string;
+  slug: string;
+  categorySlug: string;
+  tagline: string | null;
+  description: string;
+  propertyType: string;
+  country: string;
+  city: string;
+  address: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  nearbyAttractions: string[];
+  maxGuests: number;
+  bedrooms: number;
+  bathrooms: number;
+  bedConfigurations: string | null;
+  nightlyRate: number;
+  weekendRate: number | null;
+  cleaningFee: number | null;
+  serviceFeePercent: number | null;
+  minimumStay: number;
+  cancellationPolicy: string;
+  instantBook: boolean;
+  isPublished: boolean;
+  isFeatured: boolean;
+  sortOrder: number;
+  images: PropertyImage[];
+  amenities: PropertyAmenity[];
+}
+
 interface AdminDashboardProps {
   images: Image[];
   journalPosts: JournalPost[];
+  properties: Property[];
 }
 
 const IMAGE_SECTIONS = {
@@ -65,9 +113,9 @@ const IMAGE_SECTIONS = {
   ]
 };
 
-const TABS = ['Homepage', 'Experiences', 'About', 'Journal Hero', 'Journal Posts'];
+const TABS = ['Homepage', 'Experiences', 'About', 'Journal Hero', 'Journal Posts', 'Properties'];
 
-export function AdminDashboard({ images, journalPosts }: AdminDashboardProps) {
+export function AdminDashboard({ images, journalPosts, properties }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState('Homepage');
 
   const getImage = (sectionId: string) => {
@@ -80,7 +128,7 @@ export function AdminDashboard({ images, journalPosts }: AdminDashboardProps) {
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-serif text-[#6F655C]">Content Management</h1>
           <div className="text-sm text-[#6F655C]">
-            Total Images: {images.length} | Journal Posts: {journalPosts.length}
+            Images: {images.length} | Journal Posts: {journalPosts.length} | Properties: {properties.length}
           </div>
         </div>
 
@@ -101,7 +149,9 @@ export function AdminDashboard({ images, journalPosts }: AdminDashboardProps) {
           </div>
 
           <div className="p-8">
-            {activeTab === 'Journal Posts' ? (
+            {activeTab === 'Properties' ? (
+              <PropertyEditor properties={properties} />
+            ) : activeTab === 'Journal Posts' ? (
               <JournalPostEditor posts={journalPosts} />
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
