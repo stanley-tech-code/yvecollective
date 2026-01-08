@@ -48,7 +48,6 @@ interface CategoryPageClientProps {
 }
 
 export function CategoryPageClient({
-  categorySlug,
   categoryName,
   categoryDescription,
   properties,

@@ -95,6 +95,7 @@ export const getSimilarProperties = cache(async (propertyId: string, categorySlu
         where: { isFeatured: true },
         take: 1,
       },
+      amenities: true,
     },
     take: limit,
     orderBy: [

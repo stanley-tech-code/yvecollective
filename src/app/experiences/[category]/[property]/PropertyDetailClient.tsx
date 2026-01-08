@@ -302,7 +302,7 @@ export function PropertyDetailClient({
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-[#6F655C]/70">Cancellation</span>
-                      <span className="text-[#333232] capitalize">{property.cancellationPolicy}</span>
+                      <span className="text-[#333232] capitalize">{cancellationLabel}</span>
                     </div>
                   </div>
 
