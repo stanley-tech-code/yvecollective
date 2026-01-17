@@ -11,7 +11,7 @@ export const EXPERIENCE_CATEGORIES = {
     name: 'Coastal Retreats',
     description: 'Along coastlines, we curate stays that blend barefoot luxury with timeless charm.',
   },
-  'mountain-cabin-getaways': {
+  'mountain-and-cabin-getaways': {
     name: 'Mountain & Cabin Getaways',
     description: 'In the highlands and forests, find peace in simplicity.',
   },
