@@ -57,7 +57,7 @@ export function ExperienceCard({ title, description, image, altText, index, href
           </h4>
           <p className="text-[#6F655C]/80 leading-relaxed">{description}</p>
           <div className="mt-4 flex items-center gap-2 text-[#6F655C] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span>Explore Properties</span>
+            <span>Featured Listings</span>
             <ArrowRight className="w-4 h-4" />
           </div>
         </div>
