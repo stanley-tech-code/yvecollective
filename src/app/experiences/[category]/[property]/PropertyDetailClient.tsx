@@ -17,6 +17,7 @@ import {
   Star,
 } from 'lucide-react';
 import { PropertyCard } from '@/components/sections/PropertyCard';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
 
 interface PropertyImage {
   id: string;
