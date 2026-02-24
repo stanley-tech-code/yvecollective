@@ -19,6 +19,10 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
+  // Pages that should always have a visible (scrolled-style) header
+  const isLightPage = pathname.startsWith('/experiences') || pathname === '/contact-options';
+  const shouldShowBg = scrolled || isLightPage;
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -51,27 +55,24 @@ export function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-white/70 backdrop-blur-xl shadow-lg shadow-black/5 border-b border-white/20'
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${shouldShowBg
+            ? 'bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5 border-b border-gray-100'
             : 'bg-transparent'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8 py-4 flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex flex-col leading-tight group">
-            <motion.span 
-              className={`text-2xl md:text-3xl font-serif tracking-wide transition-colors duration-300 ${
-                scrolled ? 'text-[#6F655C]' : 'text-white drop-shadow-md'
-              }`}
+            <motion.span
+              className={`text-2xl md:text-3xl font-serif tracking-wide transition-colors duration-300 ${shouldShowBg ? 'text-[#1a1a1a]' : 'text-white drop-shadow-md'
+                }`}
               whileHover={{ x: 2 }}
               transition={{ duration: 0.2 }}
             >
               Yve Collective
             </motion.span>
-            <span className={`text-xs md:text-sm uppercase tracking-[0.2em] transition-colors duration-300 ${
-              scrolled ? 'text-[#6F655C]/70' : 'text-white/80'
-            }`}>
+            <span className={`text-xs md:text-sm uppercase tracking-[0.2em] transition-colors duration-300 ${shouldShowBg ? 'text-[#717171]' : 'text-white/80'
+              }`}>
               Retreats & Beyond
             </span>
           </Link>
@@ -84,18 +85,16 @@ export function Header() {
                 href={link.href}
                 className="relative group"
               >
-                <span className={`font-medium transition-colors duration-300 ${
-                  scrolled 
-                    ? 'text-[#6F655C] hover:text-[#4a433b]' 
+                <span className={`font-medium transition-colors duration-300 ${shouldShowBg
+                    ? 'text-[#1a1a1a] hover:text-[#4a4a4a]'
                     : 'text-white/90 hover:text-white'
-                }`}>
+                  }`}>
                   {link.label}
                 </span>
                 {/* Animated underline */}
                 <motion.span
-                  className={`absolute -bottom-1 left-0 h-0.5 ${
-                    scrolled ? 'bg-[#6F655C]' : 'bg-white'
-                  }`}
+                  className={`absolute -bottom-1 left-0 h-0.5 ${shouldShowBg ? 'bg-[#1a1a1a]' : 'bg-white'
+                    }`}
                   initial={{ width: pathname === link.href ? '100%' : '0%' }}
                   animate={{ width: pathname === link.href ? '100%' : '0%' }}
                   whileHover={{ width: '100%' }}
@@ -108,11 +107,10 @@ export function Header() {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden p-2 rounded-full transition-colors duration-300 ${
-              scrolled 
-                ? 'text-[#6F655C] hover:bg-[#6F655C]/10' 
+            className={`md:hidden p-2 rounded-full transition-colors duration-300 ${shouldShowBg
+                ? 'text-[#1a1a1a] hover:bg-[#1a1a1a]/5'
                 : 'text-white hover:bg-white/10'
-            }`}
+              }`}
             whileTap={{ scale: 0.95 }}
             aria-label="Toggle menu"
           >
@@ -173,11 +171,10 @@ export function Header() {
                     <Link
                       href={link.href}
                       onClick={() => setIsOpen(false)}
-                      className={`block py-4 text-lg font-medium border-b border-[#6F655C]/10 transition-colors ${
-                        pathname === link.href
+                      className={`block py-4 text-lg font-medium border-b border-[#6F655C]/10 transition-colors ${pathname === link.href
                           ? 'text-[#6F655C]'
                           : 'text-[#6F655C]/70 hover:text-[#6F655C]'
-                      }`}
+                        }`}
                     >
                       {link.label}
                       {pathname === link.href && (

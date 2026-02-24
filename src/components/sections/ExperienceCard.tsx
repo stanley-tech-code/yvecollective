@@ -12,6 +12,7 @@ interface ExperienceCardProps {
   altText: string;
   index: number;
   href?: string;
+  ctaText?: string;
 }
 
 // Convert title to URL slug
@@ -24,50 +25,47 @@ function titleToSlug(title: string): string {
     .trim();
 }
 
-export function ExperienceCard({ title, description, image, altText, index, href }: ExperienceCardProps) {
-  // Generate href from title if not provided
+export function ExperienceCard({ title, description, image, altText, index, href, ctaText }: ExperienceCardProps) {
   const linkHref = href || `/experiences/${titleToSlug(title)}`;
 
   return (
     <Link href={linkHref}>
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 0.6,
-          delay: index * 0.15,
-          ease: [0.22, 1, 0.36, 1]
+          duration: 0.5,
+          delay: index * 0.12,
+          ease: [0.22, 1, 0.36, 1],
         }}
         viewport={{ once: true, amount: 0.2 }}
-        className="group bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+        className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl hover:border-gray-300 transition-all duration-300 cursor-pointer"
       >
-        <div className="relative h-56 w-full overflow-hidden">
+        {/* Image */}
+        <div className="relative h-56 w-full overflow-hidden bg-gray-100">
           <Image
             src={image}
             alt={altText}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          {/* Dark gradient on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
         </div>
+
+        {/* Content */}
         <div className="p-5">
-          <h4 className="text-xl font-serif mb-2 text-[#6F655C] group-hover:text-[#4a433b] transition-colors">
+          <h4 className="text-lg font-semibold text-[#1a1a1a] group-hover:text-[#6F655C] transition-colors mb-1.5 leading-snug">
             {title}
           </h4>
-          <p className="text-[#6F655C]/80 leading-relaxed">{description}</p>
-          <div className="mt-4 flex items-center gap-2 text-[#6F655C] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span>Featured Listings</span>
-            <ArrowRight className="w-4 h-4" />
+          <p className="text-sm text-[#717171] leading-relaxed line-clamp-3">{description}</p>
+          <div className="mt-4 flex items-center gap-1.5 text-sm font-semibold text-[#1a1a1a] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span>{ctaText || 'View Listings'}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </div>
         </div>
       </motion.div>
     </Link>
   );
 }
-
-
-
-
-
-

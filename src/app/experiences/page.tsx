@@ -76,24 +76,24 @@ export default async function ExperiencesPage() {
             Each journey is thoughtfully curated to reflect a refined sense of place and the beauty of slow discovery.
           </p>
         </div>
-        
+
         {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F5F2EB] to-transparent" />
       </section>
 
       {/* Experiences Grid */}
       {experiences.length > 0 && (
-        <section className="py-24 px-6 md:px-16 text-center bg-[#F5F2EB]">
+        <section className="py-20 px-6 md:px-16 text-center bg-white border-b border-gray-100">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-5xl font-serif mb-6 text-[#333232]">Our Signature Escapes</h2>
+            <h2 className="text-3xl md:text-5xl font-serif mb-4 text-[#1a1a1a]">Our Signature Escapes</h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
-            <p className="text-lg text-[#6F655C]/80 max-w-2xl mx-auto mb-16">
+            <p className="text-base text-[#717171] max-w-2xl mx-auto mb-12">
               Discover extraordinary destinations that speak to your soul
             </p>
           </ScrollReveal>
-          
-          <div className={`grid grid-cols-1 ${experiences.length >= 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-10 max-w-6xl mx-auto`}>
+
+          <div className={`grid grid-cols-1 ${experiences.length >= 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-6 max-w-6xl mx-auto`}>
             {experiences.map((exp, index) => (
               <ExperienceCard
                 key={exp.title}
@@ -114,20 +114,20 @@ export default async function ExperiencesPage() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#F5F2EB]/50 rounded-full translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#F5F2EB]/50 rounded-full -translate-x-1/2 translate-y-1/2" />
         </div>
-        
+
         <div className="relative z-10 max-w-4xl mx-auto">
           <ScrollReveal>
             <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#F5F2EB] flex items-center justify-center">
               <Users className="w-8 h-8 text-[#6F655C]" />
             </div>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.1}>
             <h2 className="text-3xl md:text-5xl font-serif mb-8 text-[#333232]">
               Curated Retreats & Gatherings
             </h2>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.2}>
             <p className="text-lg md:text-xl text-[#6F655C]/80 leading-relaxed">
               We design intentional spaces for connection — whether a wellness retreat, a creative escape, or an intimate celebration shared among friends.
@@ -147,11 +147,11 @@ export default async function ExperiencesPage() {
               <Compass className="w-8 h-8 text-[#6F655C]" />
             </div>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.1}>
             <h2 className="text-3xl md:text-5xl font-serif mb-8 text-[#333232]">Custom Journeys</h2>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.2}>
             <p className="text-lg md:text-xl text-[#6F655C]/80 leading-relaxed mb-4">
               Every traveler is different. Every journey, a new story.
@@ -160,10 +160,10 @@ export default async function ExperiencesPage() {
               Tell us what inspires you, and we&apos;ll craft a bespoke itinerary that reflects your vision.
             </p>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.3}>
-            <Link 
-              href="/contact-options" 
+            <Link
+              href="/contact-options"
               className="group inline-flex items-center gap-3 bg-white text-[#6F655C] px-8 py-4 rounded-full font-medium border border-[#ece7df] hover:bg-[#6F655C] hover:text-white hover:border-[#6F655C] transition-all duration-300 hover:shadow-lg"
             >
               Start Planning
@@ -178,21 +178,21 @@ export default async function ExperiencesPage() {
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#F5F2EB]/30 rounded-full blur-3xl" />
         </div>
-        
+
         <div className="relative z-10 max-w-3xl mx-auto px-6">
           <ScrollReveal>
             <Sparkles className="w-10 h-10 mx-auto mb-6 text-[#6F655C]" />
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.1}>
             <h2 className="text-3xl md:text-5xl font-serif mb-8 text-[#333232]">
               Your next escape awaits.
             </h2>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.2}>
-            <Link 
-              href="/contact-options" 
+            <Link
+              href="/contact-options"
               className="group inline-flex items-center gap-3 bg-[#6F655C] text-white px-8 py-4 rounded-full font-medium hover:bg-[#5a534b] transition-all duration-300 hover:shadow-xl hover:shadow-[#6F655C]/20"
             >
               Get in Touch

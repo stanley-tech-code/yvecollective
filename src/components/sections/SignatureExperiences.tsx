@@ -7,6 +7,8 @@ interface Experience {
   description: string;
   image: string | null;
   altText: string;
+  href?: string;
+  ctaText?: string;
 }
 
 export async function SignatureExperiences() {
@@ -42,6 +44,8 @@ export async function SignatureExperiences() {
       description: "Thoughtfully designed gatherings that bring people together in extraordinary ways.",
       image: groupImg?.url || null,
       altText: groupImg?.altText || "Curated Group Retreats",
+      href: "/contact-options",
+      ctaText: "Contact Us"
     },
   ];
 
@@ -60,13 +64,13 @@ export async function SignatureExperiences() {
           Signature Experiences
         </h3>
       </ScrollReveal>
-      
+
       <ScrollReveal delay={0.2}>
         <p className="max-w-3xl mx-auto mb-16 text-lg text-[#6F655C]/90 leading-relaxed">
           At Yve Collective, we believe travel should feel intentional, calm, inspired, and deeply personal. From private safaris to boutique retreats, every journey is thoughtfully curated to reflect a refined sense of place and the beauty of slow discovery.
         </p>
       </ScrollReveal>
-      
+
       <div className={`grid grid-cols-1 md:grid-cols-2 ${experiences.length >= 4 ? 'lg:grid-cols-4' : experiences.length === 3 ? 'lg:grid-cols-3' : ''} gap-8 max-w-7xl mx-auto`}>
         {experiences.map((exp, index) => (
           <ExperienceCard
@@ -76,6 +80,8 @@ export async function SignatureExperiences() {
             image={exp.image!}
             altText={exp.altText}
             index={index}
+            href={exp.href}
+            ctaText={exp.ctaText}
           />
         ))}
       </div>

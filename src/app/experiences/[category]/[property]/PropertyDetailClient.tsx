@@ -115,13 +115,13 @@ export function PropertyDetailClient({
   };
 
   return (
-    <main className="min-h-screen bg-[#F5F2EB]">
-      {/* Breadcrumb */}
-      <section className="bg-white py-4 px-6 md:px-16 border-b border-gray-100">
+    <main className="min-h-screen bg-white">
+      {/* Breadcrumb - Adjusted for fixed Navbar overlap */}
+      <section className="bg-white pt-24 pb-4 px-6 md:px-16 border-b border-gray-100">
         <div className="max-w-6xl mx-auto">
           <Link
             href={`/experiences/${categorySlug}`}
-            className="inline-flex items-center gap-2 text-[#6F655C] hover:text-[#333232] transition"
+            className="inline-flex items-center gap-2 text-[#717171] hover:text-[#1a1a1a] transition-colors text-sm font-medium"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to {categoryName}
@@ -130,124 +130,161 @@ export function PropertyDetailClient({
       </section>
 
       {/* Image Gallery */}
-      <section className="bg-white pb-8">
-        <div className="max-w-6xl mx-auto px-6 md:px-16">
+      <section className="bg-white">
+        <div className="max-w-6xl mx-auto md:px-16 md:pt-6">
           {property.images.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 pt-6">
-              {/* Main Image */}
-              <div
-                className="md:col-span-2 md:row-span-2 relative aspect-[4/3] rounded-l-2xl overflow-hidden cursor-pointer group"
-                onClick={() => openLightbox(0)}
-              >
-                <Image
-                  src={property.images[0].url}
-                  alt={property.images[0].altText || property.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  priority
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition" />
+            <div className="relative">
+              {/* Mobile Scroll Gallery */}
+              <div className="md:hidden relative group">
+                <div
+                  className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar"
+                  onScroll={(e) => {
+                    const scrollLeft = (e.target as HTMLDivElement).scrollLeft;
+                    const width = (e.target as HTMLDivElement).clientWidth;
+                    const index = Math.round(scrollLeft / width);
+                    setLightboxIndex(index);
+                  }}
+                >
+                  {property.images.map((image, idx) => (
+                    <div
+                      key={image.id}
+                      className="min-w-full aspect-[4/3] relative snap-start"
+                      onClick={() => openLightbox(idx)}
+                    >
+                      <Image
+                        src={image.url}
+                        alt={image.altText || property.title}
+                        fill
+                        className="object-cover"
+                        priority={idx === 0}
+                      />
+                    </div>
+                  ))}
+                </div>
+                {/* 1/n Counter Badge */}
+                <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-white text-[11px] font-medium px-2.5 py-1 rounded-md shadow-sm pointer-events-none">
+                  {lightboxIndex + 1} / {property.images.length}
+                </div>
               </div>
 
-              {/* Secondary Images */}
-              {property.images.slice(1, 5).map((image, index) => (
+              {/* Desktop Sharp Grid */}
+              <div className="hidden md:grid grid-cols-4 gap-2 h-[450px]">
+                {/* Main Large Image */}
                 <div
-                  key={image.id}
-                  className={`relative aspect-[4/3] overflow-hidden cursor-pointer group ${index === 1 ? 'rounded-tr-2xl' : index === 3 ? 'rounded-br-2xl' : ''
-                    } hidden md:block`}
-                  onClick={() => openLightbox(index + 1)}
+                  className="col-span-2 row-span-2 relative h-full rounded-l-xl overflow-hidden cursor-pointer group"
+                  onClick={() => openLightbox(0)}
                 >
                   <Image
-                    src={image.url}
-                    alt={image.altText || property.title}
+                    src={property.images[0].url}
+                    alt={property.images[0].altText || property.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    priority
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition" />
-
-                  {/* Show more overlay on last visible image */}
-                  {index === 3 && property.images.length > 5 && (
-                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                      <span className="text-white font-medium">
-                        +{property.images.length - 5} more
-                      </span>
-                    </div>
-                  )}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
                 </div>
-              ))}
+
+                {/* Grid side images */}
+                <div className="col-span-2 grid grid-cols-2 gap-2 h-full">
+                  {property.images.slice(1, 5).map((image, index) => (
+                    <div
+                      key={image.id}
+                      className={`relative h-full overflow-hidden cursor-pointer group ${index === 1 ? 'rounded-tr-xl' : index === 3 ? 'rounded-br-xl' : ''
+                        }`}
+                      onClick={() => openLightbox(index + 1)}
+                    >
+                      <Image
+                        src={image.url}
+                        alt={image.altText || property.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
+
+                      {index === 3 && property.images.length > 5 && (
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-colors group-hover:bg-black/50">
+                          <span className="text-white text-sm font-semibold tracking-wide">
+                            +{property.images.length - 5} photos
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           ) : (
-            <div className="aspect-[21/9] bg-gradient-to-br from-[#6F655C] to-[#A69580] rounded-2xl flex items-center justify-center">
-              <span className="text-white/50">No images available</span>
+            <div className="aspect-[21/9] bg-gray-100 rounded-2xl flex items-center justify-center">
+              <span className="text-gray-400">No images available</span>
             </div>
           )}
         </div>
       </section>
 
       {/* Content */}
-      <section className="py-12 px-6 md:px-16">
+      <section className="py-12 px-6 md:px-16 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Left Column - Details */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-2 space-y-12">
               <ScrollReveal>
                 <div>
                   {property.isFeatured && (
-                    <div className="inline-flex items-center gap-1 bg-[#6F655C] text-white px-3 py-1 rounded-full text-xs font-medium mb-4">
-                      <Star className="w-3 h-3 fill-current" />
+                    <div className="inline-flex items-center gap-1.5 bg-[#1a1a1a] text-white px-3 py-1 rounded-md text-[11px] font-semibold mb-6 uppercase tracking-wider">
+                      <Star className="w-3 h-3 fill-[#FFB400] text-[#FFB400]" />
                       Featured Property
                     </div>
                   )}
-                  <h1 className="text-3xl md:text-4xl font-serif text-[#333232] mb-2">
+                  <h1 className="text-3xl md:text-5xl font-serif text-[#1a1a1a] mb-4 leading-tight">
                     {property.title}
                   </h1>
-                  <div className="flex items-center gap-2 text-[#6F655C]">
+                  <div className="flex items-center gap-2 text-[#717171] font-medium">
                     <MapPin className="w-4 h-4" />
-                    <span>
+                    <span className="text-sm">
                       {property.city}, {property.country}
                     </span>
                   </div>
                   {property.tagline && (
-                    <p className="mt-4 text-lg text-[#6F655C]/80 italic">
+                    <p className="mt-6 text-xl text-[#717171] italic border-l-2 border-gray-100 pl-6 py-1">
                       {property.tagline}
                     </p>
                   )}
                 </div>
               </ScrollReveal>
 
-              {/* Quick Stats */}
+              {/* Quick Stats Grid */}
               <ScrollReveal delay={0.1}>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="bg-white rounded-xl p-4 text-center">
-                    <Users className="w-6 h-6 mx-auto text-[#6F655C] mb-2" />
-                    <p className="text-2xl font-serif text-[#333232]">{property.maxGuests}</p>
-                    <p className="text-sm text-[#6F655C]/70">Guests</p>
+                  <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+                    <Users className="w-5 h-5 text-[#1a1a1a] mb-3" />
+                    <p className="text-2xl font-serif text-[#1a1a1a]">{property.maxGuests}</p>
+                    <p className="text-xs font-semibold text-[#717171] uppercase tracking-wider">Guests</p>
                   </div>
-                  <div className="bg-white rounded-xl p-4 text-center">
-                    <BedDouble className="w-6 h-6 mx-auto text-[#6F655C] mb-2" />
-                    <p className="text-2xl font-serif text-[#333232]">{property.bedrooms}</p>
-                    <p className="text-sm text-[#6F655C]/70">Bedrooms</p>
+                  <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+                    <BedDouble className="w-5 h-5 text-[#1a1a1a] mb-3" />
+                    <p className="text-2xl font-serif text-[#1a1a1a]">{property.bedrooms}</p>
+                    <p className="text-xs font-semibold text-[#717171] uppercase tracking-wider">Bedrooms</p>
                   </div>
-                  <div className="bg-white rounded-xl p-4 text-center">
-                    <Bath className="w-6 h-6 mx-auto text-[#6F655C] mb-2" />
-                    <p className="text-2xl font-serif text-[#333232]">{property.bathrooms}</p>
-                    <p className="text-sm text-[#6F655C]/70">Bathrooms</p>
+                  <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+                    <Bath className="w-5 h-5 text-[#1a1a1a] mb-3" />
+                    <p className="text-2xl font-serif text-[#1a1a1a]">{property.bathrooms}</p>
+                    <p className="text-xs font-semibold text-[#717171] uppercase tracking-wider">Bathrooms</p>
                   </div>
-                  <div className="bg-white rounded-xl p-4 text-center">
-                    <Calendar className="w-6 h-6 mx-auto text-[#6F655C] mb-2" />
-                    <p className="text-2xl font-serif text-[#333232]">{property.minimumStay}</p>
-                    <p className="text-sm text-[#6F655C]/70">Min Nights</p>
+                  <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+                    <Calendar className="w-5 h-5 text-[#1a1a1a] mb-3" />
+                    <p className="text-2xl font-serif text-[#1a1a1a]">{property.minimumStay}</p>
+                    <p className="text-xs font-semibold text-[#717171] uppercase tracking-wider">Min Nights</p>
                   </div>
                 </div>
               </ScrollReveal>
 
               {/* Description */}
               <ScrollReveal delay={0.2}>
-                <div className="bg-white rounded-2xl p-6">
-                  <h2 className="text-xl font-serif text-[#333232] mb-4">About this property</h2>
-                  <div className="prose prose-stone max-w-none text-[#6F655C]/80">
+                <div className="border-t border-gray-100 pt-10">
+                  <h2 className="text-2xl font-serif text-[#1a1a1a] mb-6">About this property</h2>
+                  <div className="prose prose-stone max-w-none text-[#555] leading-relaxed">
                     {property.description.split('\n').map((paragraph, i) => (
-                      <p key={i} className="mb-4">{paragraph}</p>
+                      <p key={i} className="mb-4 text-base">{paragraph}</p>
                     ))}
                   </div>
                 </div>
@@ -256,13 +293,13 @@ export function PropertyDetailClient({
               {/* Amenities */}
               {property.amenities.length > 0 && (
                 <ScrollReveal delay={0.3}>
-                  <div className="bg-white rounded-2xl p-6">
-                    <h2 className="text-xl font-serif text-[#333232] mb-4">Amenities</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <div className="border-t border-gray-100 pt-10">
+                    <h2 className="text-2xl font-serif text-[#1a1a1a] mb-6">What this place offers</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
                       {property.amenities.map((amenity) => (
-                        <div key={amenity.id} className="flex items-center gap-2 text-[#6F655C]">
-                          <Check className="w-4 h-4 text-green-600" />
-                          <span>{amenity.name}</span>
+                        <div key={amenity.id} className="flex items-center gap-3 text-[#555]">
+                          <Check className="w-4 h-4 text-[#1a1a1a]" />
+                          <span className="text-base">{amenity.name}</span>
                         </div>
                       ))}
                     </div>
@@ -274,54 +311,54 @@ export function PropertyDetailClient({
             {/* Right Column - Booking Card */}
             <div className="lg:col-span-1">
               <ScrollReveal delay={0.2}>
-                <div className="bg-white rounded-2xl p-6 shadow-lg sticky top-24">
-                  <div className="flex items-end gap-1 mb-6">
-                    <span className="text-3xl font-serif text-[#333232]">
+                <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-xl sticky top-32">
+                  <div className="flex items-baseline gap-1 mb-8">
+                    <span className="text-3xl font-bold text-[#1a1a1a]">
                       ${property.nightlyRate.toLocaleString()}
                     </span>
-                    <span className="text-[#6F655C]/70 pb-1">/night</span>
+                    <span className="text-[#717171] font-medium text-sm">night</span>
                   </div>
 
                   {property.weekendRate && (
-                    <p className="text-sm text-[#6F655C]/70 -mt-4 mb-4">
+                    <div className="text-xs font-medium text-[#717171] -mt-6 mb-6 inline-block bg-gray-50 px-2 py-1 rounded">
                       Weekend rate: ${property.weekendRate.toLocaleString()}/night
-                    </p>
+                    </div>
                   )}
 
                   {/* Pricing Details */}
-                  <div className="space-y-2 mb-6 pb-6 border-b border-gray-100">
+                  <div className="space-y-4 mb-8">
                     {property.cleaningFee && (
                       <div className="flex justify-between text-sm">
-                        <span className="text-[#6F655C]/70">Cleaning fee</span>
-                        <span className="text-[#333232]">${property.cleaningFee.toLocaleString()}</span>
+                        <span className="text-[#717171] underline underline-offset-2">Cleaning fee</span>
+                        <span className="text-[#1a1a1a] font-semibold">${property.cleaningFee.toLocaleString()}</span>
                       </div>
                     )}
                     <div className="flex justify-between text-sm">
-                      <span className="text-[#6F655C]/70">Minimum stay</span>
-                      <span className="text-[#333232]">{property.minimumStay} nights</span>
+                      <span className="text-[#717171] underline underline-offset-2">Service fee</span>
+                      <span className="text-[#1a1a1a] font-semibold">$0</span>
                     </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-[#6F655C]/70">Cancellation</span>
-                      <span className="text-[#333232] capitalize">{cancellationLabel}</span>
+                    <div className="pt-4 border-t border-gray-100 flex justify-between font-bold text-[#1a1a1a] text-lg">
+                      <span>Total nightly</span>
+                      <span>${property.nightlyRate.toLocaleString()}</span>
                     </div>
                   </div>
 
                   {/* Booking CTA */}
                   <Link
                     href="/contact-options"
-                    className="block w-full text-center bg-[#6F655C] text-white py-3 rounded-full font-medium hover:bg-[#5a534b] transition mb-3"
+                    className="block w-full text-center bg-[#1a1a1a] text-white py-4 rounded-xl font-bold hover:bg-black transition-all mb-4"
                   >
-                    {property.instantBook ? 'Book Now' : 'Request to Book'}
+                    {property.instantBook ? 'Reserve Now' : 'Request to Book'}
                   </Link>
 
                   <Link
                     href="/contact-options"
-                    className="block w-full text-center bg-[#F5F2EB] text-[#6F655C] py-3 rounded-full font-medium hover:bg-[#F0EDE5] transition"
+                    className="block w-full text-center border border-[#1a1a1a] text-[#1a1a1a] py-3.5 rounded-xl font-semibold hover:bg-gray-50 transition-all text-sm"
                   >
-                    Contact Host
+                    Message Host
                   </Link>
 
-                  <p className="text-xs text-center text-[#6F655C]/50 mt-4">
+                  <p className="text-[11px] text-center text-[#717171] mt-6 font-medium">
                     You won&apos;t be charged yet
                   </p>
                 </div>
@@ -333,10 +370,10 @@ export function PropertyDetailClient({
 
       {/* Similar Properties */}
       {similarProperties.length > 0 && (
-        <section className="py-16 px-6 md:px-16 bg-white">
+        <section className="py-16 px-6 md:px-16 bg-white border-t border-gray-100">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
-              <h2 className="text-2xl md:text-3xl font-serif text-[#333232] mb-8">
+              <h2 className="text-2xl md:text-3xl font-serif text-[#1a1a1a] mb-8">
                 Similar Properties
               </h2>
             </ScrollReveal>

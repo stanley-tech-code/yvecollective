@@ -46,95 +46,94 @@ export function PropertyCard({ property, index }: PropertyCardProps) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.6,
-        delay: index * 0.1,
+        duration: 0.5,
+        delay: index * 0.08,
         ease: [0.22, 1, 0.36, 1],
       }}
       viewport={{ once: true, amount: 0.2 }}
     >
       <Link
         href={`/experiences/${property.categorySlug}/${property.slug}`}
-        className="group block bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+        className="group block bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl hover:border-gray-300 transition-all duration-300"
       >
         {/* Image */}
-        <div className="relative h-56 w-full overflow-hidden">
+        <div className="relative h-56 w-full overflow-hidden bg-gray-100">
           {featuredImage ? (
             <Image
               src={featuredImage.url}
               alt={featuredImage.altText || property.title}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-[#6F655C] to-[#A69580] flex items-center justify-center">
-              <span className="text-white/50">No image</span>
+              <span className="text-white/50 text-sm">No image</span>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
           {/* Featured Badge */}
           {property.isFeatured && (
-            <div className="absolute top-3 left-3 flex items-center gap-1 bg-[#6F655C] text-white px-3 py-1 rounded-full text-xs font-medium">
-              <Star className="w-3 h-3 fill-current" />
+            <div className="absolute top-3 left-3 flex items-center gap-1 bg-white text-[#1a1a1a] px-2.5 py-1 rounded-md text-xs font-semibold shadow-sm">
+              <Star className="w-3 h-3 fill-[#FFB400] text-[#FFB400]" />
               Featured
             </div>
           )}
 
           {/* Property Type Badge */}
-          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-[#6F655C] px-3 py-1 rounded-full text-xs font-medium capitalize">
+          <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white px-2.5 py-1 rounded-md text-xs font-medium capitalize">
             {property.propertyType}
           </div>
         </div>
 
         {/* Content */}
-        <div className="p-5">
-          {/* Title */}
-          <h3 className="text-lg font-serif text-[#333232] group-hover:text-[#6F655C] transition-colors line-clamp-1">
-            {property.title}
-          </h3>
-
-          {/* Location */}
-          <div className="flex items-center gap-1 mt-1 text-[#6F655C]/70 text-sm">
-            <MapPin className="w-3.5 h-3.5" />
-            <span className="line-clamp-1">{property.city}, {property.country}</span>
+        <div className="p-4">
+          {/* Title + Location */}
+          <div className="mb-2">
+            <h3 className="text-base font-semibold text-[#1a1a1a] group-hover:text-[#6F655C] transition-colors line-clamp-1 leading-snug">
+              {property.title}
+            </h3>
+            <div className="flex items-center gap-1 mt-0.5 text-[#717171] text-xs">
+              <MapPin className="w-3 h-3 flex-shrink-0" />
+              <span className="line-clamp-1">{property.city}, {property.country}</span>
+            </div>
           </div>
 
           {/* Tagline */}
           {property.tagline && (
-            <p className="mt-2 text-sm text-[#6F655C]/80 line-clamp-2">
+            <p className="text-xs text-[#717171] line-clamp-1 mb-2">
               {property.tagline}
             </p>
           )}
 
-          {/* Details */}
-          <div className="flex items-center gap-4 mt-3 text-sm text-[#6F655C]/70">
+          {/* Specs row */}
+          <div className="flex items-center gap-2 text-xs text-[#717171] mb-3">
             <div className="flex items-center gap-1">
-              <Users className="w-4 h-4" />
+              <Users className="w-3.5 h-3.5" />
               <span>{property.maxGuests} guests</span>
             </div>
-            <span>·</span>
+            <span className="text-gray-300">•</span>
             <span>{property.bedrooms} bed{property.bedrooms !== 1 ? 's' : ''}</span>
-            <span>·</span>
+            <span className="text-gray-300">•</span>
             <span>{property.bathrooms} bath{property.bathrooms !== 1 ? 's' : ''}</span>
           </div>
 
           {/* Amenities */}
           {displayedAmenities.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mt-3">
+            <div className="flex flex-wrap gap-1 mb-3">
               {displayedAmenities.map((amenity) => (
                 <span
                   key={amenity.id}
-                  className="bg-[#F5F2EB] text-[#6F655C] px-2 py-0.5 rounded-full text-xs"
+                  className="bg-gray-100 text-[#555] px-2 py-0.5 rounded text-[11px] font-medium"
                 >
                   {amenity.name}
                 </span>
               ))}
               {property.amenities.length > 3 && (
-                <span className="text-[#6F655C]/60 text-xs">
+                <span className="text-[#717171] text-[11px] self-center">
                   +{property.amenities.length - 3} more
                 </span>
               )}
@@ -142,15 +141,15 @@ export function PropertyCard({ property, index }: PropertyCardProps) {
           )}
 
           {/* Price */}
-          <div className="mt-4 pt-3 border-t border-gray-100 flex items-end justify-between">
-            <div>
-              <span className="text-xl font-serif text-[#333232]">
+          <div className="pt-3 border-t border-gray-100 flex items-center justify-between">
+            <div className="flex items-baseline gap-1">
+              <span className="text-base font-bold text-[#1a1a1a]">
                 ${property.nightlyRate.toLocaleString()}
               </span>
-              <span className="text-sm text-[#6F655C]/70"> /night</span>
+              <span className="text-xs text-[#717171] font-normal">/ night</span>
             </div>
-            <span className="text-sm text-[#6F655C] font-medium group-hover:underline">
-              View Details →
+            <span className="text-xs font-medium text-[#6F655C] group-hover:underline underline-offset-2">
+              View details →
             </span>
           </div>
         </div>

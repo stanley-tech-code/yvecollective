@@ -109,28 +109,18 @@ export function CategoryPageClient({
   }, [properties, filters]);
 
   return (
-    <main className="min-h-screen bg-[#F5F2EB]">
-      {/* Hero */}
-      <section className="relative py-24 px-6 md:px-16 bg-white">
+    <main className="min-h-screen bg-white">
+      {/* Header — simple, clean, sharp */}
+      <section className="pt-20 pb-8 px-6 md:px-16 bg-white">
         <div className="max-w-6xl mx-auto">
-          <ScrollReveal>
-            <Link
-              href="/experiences"
-              className="inline-flex items-center gap-2 text-[#6F655C] hover:text-[#333232] transition mb-6"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Experiences
-            </Link>
-          </ScrollReveal>
-
           <ScrollReveal delay={0.1}>
-            <h1 className="text-4xl md:text-5xl font-serif text-[#333232] mb-4">
+            <h1 className="text-4xl md:text-5xl font-serif text-[#1a1a1a] mb-4 leading-tight">
               {categoryName}
             </h1>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
-            <p className="text-lg text-[#6F655C]/80 max-w-2xl">
+            <p className="text-base md:text-lg text-[#717171] max-w-2xl leading-relaxed">
               {categoryDescription}
             </p>
           </ScrollReveal>
@@ -138,7 +128,7 @@ export function CategoryPageClient({
       </section>
 
       {/* Properties Grid */}
-      <section className="py-12 px-6 md:px-16">
+      <section className="py-4 px-6 md:px-16 bg-white">
         <div className="max-w-6xl mx-auto">
           <PropertyFilters
             onFilterChange={setFilters}
@@ -146,7 +136,7 @@ export function CategoryPageClient({
           />
 
           {filteredProperties.length === 0 ? (
-            <div className="text-center py-16">
+            <div className="text-center py-20">
               <p className="text-[#6F655C] text-lg">
                 No properties match your filters.
               </p>
@@ -164,7 +154,7 @@ export function CategoryPageClient({
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProperties.map((property, index) => (
                 <PropertyCard
                   key={property.id}
@@ -178,9 +168,9 @@ export function CategoryPageClient({
       </section>
 
       {/* CTA */}
-      <section className="py-16 px-6 md:px-16 bg-white text-center">
+      <section className="py-16 px-6 md:px-16 bg-[#F7F7F7] text-center border-t border-gray-100">
         <ScrollReveal>
-          <h2 className="text-2xl md:text-3xl font-serif text-[#333232] mb-4">
+          <h2 className="text-2xl md:text-3xl font-serif text-[#1a1a1a] mb-4">
             Can&apos;t find what you&apos;re looking for?
           </h2>
         </ScrollReveal>
@@ -192,7 +182,7 @@ export function CategoryPageClient({
         <ScrollReveal delay={0.2}>
           <Link
             href="/contact-options"
-            className="inline-flex items-center gap-2 bg-[#6F655C] text-white px-6 py-3 rounded-full font-medium hover:bg-[#5a534b] transition"
+            className="inline-flex items-center gap-2 bg-[#222] text-white px-6 py-3 rounded-xl font-medium hover:bg-[#333] transition"
           >
             Contact Us
           </Link>
