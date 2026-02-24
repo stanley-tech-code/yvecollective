@@ -93,10 +93,6 @@ export function PropertyDetailClient({
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const cancellationLabel = CANCELLATION_POLICIES.find(
-    (p) => p.value === property.cancellationPolicy
-  )?.label || property.cancellationPolicy;
-
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
     setLightboxOpen(true);

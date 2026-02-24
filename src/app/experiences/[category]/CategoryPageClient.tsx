@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
 import { PropertyCard } from '@/components/sections/PropertyCard';
 import { PropertyFilters, FilterState } from '@/components/sections/PropertyFilters';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
